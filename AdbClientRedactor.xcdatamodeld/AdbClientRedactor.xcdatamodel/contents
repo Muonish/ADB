@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Automatic">
+    <entity name="City" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Disability" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Event">
+        <attribute name="timeStamp" optional="YES" attributeType="Date">
+            <userInfo/>
+        </attribute>
+        <userInfo/>
+    </entity>
+    <entity name="FamilyStatus" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Nationality" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Passport" syncable="YES">
+        <attribute name="date_of_issue" attributeType="Date" syncable="YES"/>
+        <attribute name="ident_number" attributeType="String" syncable="YES"/>
+        <attribute name="number" attributeType="String" syncable="YES"/>
+        <attribute name="place_of_issue" attributeType="String" syncable="YES"/>
+        <attribute name="seria" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="User" syncable="YES">
+        <attribute name="date_of_birth" attributeType="Date" syncable="YES"/>
+        <attribute name="e_mail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="first_name" attributeType="String" syncable="YES"/>
+        <attribute name="last_name" attributeType="String" syncable="YES"/>
+        <attribute name="living_address" attributeType="String" syncable="YES"/>
+        <attribute name="monthly_income" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pensioner" attributeType="Boolean" syncable="YES"/>
+        <attribute name="phone_home" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone_mob" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="place_of_birth" attributeType="String" syncable="YES"/>
+        <attribute name="place_of_work" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="registration_address" attributeType="String" syncable="YES"/>
+        <attribute name="sex" attributeType="Boolean" syncable="YES"/>
+        <relationship name="disability" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Disability" syncable="YES"/>
+        <relationship name="family_status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FamilyStatus" syncable="YES"/>
+        <relationship name="living_city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="City" syncable="YES"/>
+        <relationship name="nationality" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Nationality" syncable="YES"/>
+        <relationship name="passport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Passport" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Event" positionX="-4320" positionY="837" width="128" height="60"/>
+        <element name="User" positionX="-4491" positionY="896" width="153" height="328"/>
+        <element name="Passport" positionX="-4428" positionY="1277" width="128" height="118"/>
+        <element name="City" positionX="-4212" positionY="1152" width="128" height="58"/>
+        <element name="FamilyStatus" positionX="-4187" positionY="1071" width="128" height="58"/>
+        <element name="Nationality" positionX="-4266" positionY="1287" width="128" height="58"/>
+        <element name="Disability" positionX="-4320" positionY="1004" width="128" height="58"/>
+    </elements>
+</model>
