@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.m
 //  AdbClientRedactor
 //
-//  Created by Valeryia Breshko on 10/11/15.
+//  Created by Valeryia Breshko on 11/21/15.
 //  Copyright © 2015 Valeria Breshko. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -28,6 +28,7 @@
 @dynamic placeOfWork;
 @dynamic position;
 @dynamic registrationAddress;
+@dynamic accounts;
 @dynamic disability;
 @dynamic familyStatus;
 @dynamic livingCity;

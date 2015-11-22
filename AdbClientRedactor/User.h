@@ -2,14 +2,14 @@
 //  User.h
 //  AdbClientRedactor
 //
-//  Created by Valeryia Breshko on 10/11/15.
+//  Created by Valeryia Breshko on 11/21/15.
 //  Copyright © 2015 Valeria Breshko. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class City, Passport;
+@class Account, City, Disability, FamilyStatus, Nationality, Passport;
 
 NS_ASSUME_NONNULL_BEGIN
 

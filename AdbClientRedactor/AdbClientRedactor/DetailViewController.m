@@ -20,14 +20,6 @@ static NSString *const cDisability = @"Disability";
 static NSString *const cNationality = @"Nationality";
 static NSString *const cCity = @"City";
 
-- (DataManager*) dataManager {
-
-    if (!_dataManager) {
-        _dataManager = [DataManager sharedManager] ;
-    }
-    return _dataManager;
-}
-
 - (void)configureView {
     // Update the user interface for the detail item.
     self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
@@ -111,6 +103,7 @@ static NSString *const cCity = @"City";
     [self configureView];
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -143,6 +136,7 @@ static NSString *const cCity = @"City";
         return NO;
     } else {
         self.detailItem = nil;
+        [self.navigationController popViewControllerAnimated:YES];
         return YES;
     }
 }
@@ -330,12 +324,5 @@ static NSString *const cCity = @"City";
     }];
     [self presentViewController:alert animated:YES completion:nil];
 }
-
-- (void)showAlertWithTitle: (NSString *)title andMessage: (NSString*) message{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
 
 @end

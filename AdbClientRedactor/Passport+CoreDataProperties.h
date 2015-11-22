@@ -2,7 +2,7 @@
 //  Passport+CoreDataProperties.h
 //  AdbClientRedactor
 //
-//  Created by Valeryia Breshko on 10/11/15.
+//  Created by Valeryia Breshko on 11/21/15.
 //  Copyright © 2015 Valeria Breshko. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *number;
 @property (nullable, nonatomic, retain) NSString *placeOfIssue;
 @property (nullable, nonatomic, retain) NSString *seria;
-@property (nullable, nonatomic, retain) NSManagedObject *user;
+@property (nullable, nonatomic, retain) User *user;
 
 @end
 

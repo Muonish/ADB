@@ -7,56 +7,105 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		305EEE701BCAB16C00D0BC0E /* AdbClientRedactor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE6E1BCAB16B00D0BC0E /* AdbClientRedactor.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
-		305EEE891BCAC2CE00D0BC0E /* City+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE721BCAC2CE00D0BC0E /* City+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		305EEE8A1BCAC2CE00D0BC0E /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE741BCAC2CE00D0BC0E /* City.m */; settings = {ASSET_TAGS = (); }; };
-		305EEE8B1BCAC2CE00D0BC0E /* Passport+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE761BCAC2CE00D0BC0E /* Passport+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		305EEE8C1BCAC2CE00D0BC0E /* Passport.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE781BCAC2CE00D0BC0E /* Passport.m */; settings = {ASSET_TAGS = (); }; };
-		305EEE8D1BCAC2CE00D0BC0E /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE7A1BCAC2CE00D0BC0E /* User+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		305EEE8E1BCAC2CE00D0BC0E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE7C1BCAC2CE00D0BC0E /* User.m */; settings = {ASSET_TAGS = (); }; };
-		305EEE8F1BCAC2CE00D0BC0E /* Disability+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE7E1BCAC2CE00D0BC0E /* Disability+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		305EEE901BCAC2CE00D0BC0E /* Disability.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE801BCAC2CE00D0BC0E /* Disability.m */; settings = {ASSET_TAGS = (); }; };
-		305EEE911BCAC2CE00D0BC0E /* FamilyStatus+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE821BCAC2CE00D0BC0E /* FamilyStatus+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		305EEE921BCAC2CE00D0BC0E /* FamilyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE841BCAC2CE00D0BC0E /* FamilyStatus.m */; settings = {ASSET_TAGS = (); }; };
-		305EEE931BCAC2CE00D0BC0E /* Nationality+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE861BCAC2CE00D0BC0E /* Nationality+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		305EEE941BCAC2CE00D0BC0E /* Nationality.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE881BCAC2CE00D0BC0E /* Nationality.m */; settings = {ASSET_TAGS = (); }; };
-		305EEE971BCAF17700D0BC0E /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE961BCAF17700D0BC0E /* DataManager.m */; settings = {ASSET_TAGS = (); }; };
-		305EEEC11BCBD41600D0BC0E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEEC01BCBD41600D0BC0E /* SettingsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3012EADD1BFE848F00BDB060 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3012EADC1BFE848F00BDB060 /* Assets.xcassets */; };
+		3012EAE31BFE8B1100BDB060 /* DepositViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3012EAE21BFE8B1100BDB060 /* DepositViewController.m */; };
+		3012EAE61BFE8BF000BDB060 /* AccountDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3012EAE51BFE8BF000BDB060 /* AccountDetailsViewController.m */; };
+		305CE00A1C00EBB4002F875D /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFE31C00EBB4002F875D /* User+CoreDataProperties.m */; };
+		305CE00B1C00EBB4002F875D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFE51C00EBB4002F875D /* User.m */; };
+		305CE00C1C00EBB4002F875D /* Passport+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFE71C00EBB4002F875D /* Passport+CoreDataProperties.m */; };
+		305CE00D1C00EBB4002F875D /* Passport.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFE91C00EBB4002F875D /* Passport.m */; };
+		305CE00E1C00EBB4002F875D /* Card+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFEB1C00EBB4002F875D /* Card+CoreDataProperties.m */; };
+		305CE00F1C00EBB4002F875D /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFED1C00EBB4002F875D /* Card.m */; };
+		305CE0121C00EBB4002F875D /* Nationality+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFF31C00EBB4002F875D /* Nationality+CoreDataProperties.m */; };
+		305CE0131C00EBB4002F875D /* Nationality.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFF51C00EBB4002F875D /* Nationality.m */; };
+		305CE0141C00EBB4002F875D /* Disability+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFF71C00EBB4002F875D /* Disability+CoreDataProperties.m */; };
+		305CE0151C00EBB4002F875D /* Disability.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFF91C00EBB4002F875D /* Disability.m */; };
+		305CE0181C00EBB4002F875D /* FamilyStatus+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFFF1C00EBB4002F875D /* FamilyStatus+CoreDataProperties.m */; };
+		305CE0191C00EBB4002F875D /* FamilyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE0011C00EBB4002F875D /* FamilyStatus.m */; };
+		305CE01C1C00EBB4002F875D /* City+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE0071C00EBB4002F875D /* City+CoreDataProperties.m */; };
+		305CE01D1C00EBB4002F875D /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE0091C00EBB4002F875D /* City.m */; };
+		305CE0321C00EDEF002F875D /* AccountPlan+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE0251C00EDEF002F875D /* AccountPlan+CoreDataProperties.m */; };
+		305CE0331C00EDEF002F875D /* AccountPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE0271C00EDEF002F875D /* AccountPlan.m */; };
+		305CE0351C00EDEF002F875D /* Account+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE02B1C00EDEF002F875D /* Account+CoreDataProperties.m */; };
+		305CE0361C00EDEF002F875D /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE02D1C00EDEF002F875D /* Account.m */; };
+		305CE0371C00EDEF002F875D /* AccountType+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE02F1C00EDEF002F875D /* AccountType+CoreDataProperties.m */; };
+		305CE0381C00EDEF002F875D /* AccountType.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE0311C00EDEF002F875D /* AccountType.m */; };
+		305CE03D1C00EE10002F875D /* Currency+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE03A1C00EE10002F875D /* Currency+CoreDataProperties.m */; };
+		305CE03E1C00EE10002F875D /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE03C1C00EE10002F875D /* Currency.m */; };
+		305CE0411C012E53002F875D /* AddingTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE0401C012E53002F875D /* AddingTypeViewController.m */; };
+		305CE0441C012E77002F875D /* AddingPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE0431C012E77002F875D /* AddingPlanViewController.m */; };
+		305CE0471C01CFB6002F875D /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE0461C01CFB6002F875D /* TabViewController.m */; };
+		305CE04A1C01D347002F875D /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CE0491C01D347002F875D /* InfoViewController.m */; };
+		305EEE701BCAB16C00D0BC0E /* AdbClientRedactor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE6E1BCAB16B00D0BC0E /* AdbClientRedactor.xcdatamodeld */; };
+		305EEE971BCAF17700D0BC0E /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE961BCAF17700D0BC0E /* DataManager.m */; };
+		305EEEC11BCBD41600D0BC0E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEEC01BCBD41600D0BC0E /* SettingsViewController.m */; };
 		30EBB0311BB8C88800A4E13E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EBB0301BB8C88800A4E13E /* main.m */; };
 		30EBB0341BB8C88800A4E13E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EBB0331BB8C88800A4E13E /* AppDelegate.m */; };
 		30EBB03A1BB8C88800A4E13E /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EBB0391BB8C88800A4E13E /* MasterViewController.m */; };
 		30EBB03D1BB8C88800A4E13E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EBB03C1BB8C88800A4E13E /* DetailViewController.m */; };
 		30EBB0401BB8C88800A4E13E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30EBB03E1BB8C88800A4E13E /* Main.storyboard */; };
-		30EBB0421BB8C88800A4E13E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30EBB0411BB8C88800A4E13E /* Assets.xcassets */; };
 		30EBB0451BB8C88800A4E13E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30EBB0431BB8C88800A4E13E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3012EADC1BFE848F00BDB060 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3012EAE11BFE8B1100BDB060 /* DepositViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepositViewController.h; path = ../DepositViewController.h; sourceTree = "<group>"; };
+		3012EAE21BFE8B1100BDB060 /* DepositViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepositViewController.m; path = ../DepositViewController.m; sourceTree = "<group>"; };
+		3012EAE41BFE8BF000BDB060 /* AccountDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountDetailsViewController.h; path = ../AccountDetailsViewController.h; sourceTree = "<group>"; };
+		3012EAE51BFE8BF000BDB060 /* AccountDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountDetailsViewController.m; path = ../AccountDetailsViewController.m; sourceTree = "<group>"; };
+		305CDFE21C00EBB4002F875D /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "User+CoreDataProperties.h"; path = "../User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		305CDFE31C00EBB4002F875D /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+CoreDataProperties.m"; path = "../User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		305CDFE41C00EBB4002F875D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../User.h; sourceTree = "<group>"; };
+		305CDFE51C00EBB4002F875D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../User.m; sourceTree = "<group>"; };
+		305CDFE61C00EBB4002F875D /* Passport+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Passport+CoreDataProperties.h"; path = "../Passport+CoreDataProperties.h"; sourceTree = "<group>"; };
+		305CDFE71C00EBB4002F875D /* Passport+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Passport+CoreDataProperties.m"; path = "../Passport+CoreDataProperties.m"; sourceTree = "<group>"; };
+		305CDFE81C00EBB4002F875D /* Passport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Passport.h; path = ../Passport.h; sourceTree = "<group>"; };
+		305CDFE91C00EBB4002F875D /* Passport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Passport.m; path = ../Passport.m; sourceTree = "<group>"; };
+		305CDFEA1C00EBB4002F875D /* Card+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Card+CoreDataProperties.h"; path = "../Card+CoreDataProperties.h"; sourceTree = "<group>"; };
+		305CDFEB1C00EBB4002F875D /* Card+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Card+CoreDataProperties.m"; path = "../Card+CoreDataProperties.m"; sourceTree = "<group>"; };
+		305CDFEC1C00EBB4002F875D /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Card.h; path = ../Card.h; sourceTree = "<group>"; };
+		305CDFED1C00EBB4002F875D /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Card.m; path = ../Card.m; sourceTree = "<group>"; };
+		305CDFF21C00EBB4002F875D /* Nationality+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Nationality+CoreDataProperties.h"; path = "../Nationality+CoreDataProperties.h"; sourceTree = "<group>"; };
+		305CDFF31C00EBB4002F875D /* Nationality+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Nationality+CoreDataProperties.m"; path = "../Nationality+CoreDataProperties.m"; sourceTree = "<group>"; };
+		305CDFF41C00EBB4002F875D /* Nationality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Nationality.h; path = ../Nationality.h; sourceTree = "<group>"; };
+		305CDFF51C00EBB4002F875D /* Nationality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Nationality.m; path = ../Nationality.m; sourceTree = "<group>"; };
+		305CDFF61C00EBB4002F875D /* Disability+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Disability+CoreDataProperties.h"; path = "../Disability+CoreDataProperties.h"; sourceTree = "<group>"; };
+		305CDFF71C00EBB4002F875D /* Disability+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Disability+CoreDataProperties.m"; path = "../Disability+CoreDataProperties.m"; sourceTree = "<group>"; };
+		305CDFF81C00EBB4002F875D /* Disability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Disability.h; path = ../Disability.h; sourceTree = "<group>"; };
+		305CDFF91C00EBB4002F875D /* Disability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Disability.m; path = ../Disability.m; sourceTree = "<group>"; };
+		305CDFFE1C00EBB4002F875D /* FamilyStatus+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FamilyStatus+CoreDataProperties.h"; path = "../FamilyStatus+CoreDataProperties.h"; sourceTree = "<group>"; };
+		305CDFFF1C00EBB4002F875D /* FamilyStatus+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FamilyStatus+CoreDataProperties.m"; path = "../FamilyStatus+CoreDataProperties.m"; sourceTree = "<group>"; };
+		305CE0001C00EBB4002F875D /* FamilyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FamilyStatus.h; path = ../FamilyStatus.h; sourceTree = "<group>"; };
+		305CE0011C00EBB4002F875D /* FamilyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FamilyStatus.m; path = ../FamilyStatus.m; sourceTree = "<group>"; };
+		305CE0061C00EBB4002F875D /* City+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "City+CoreDataProperties.h"; path = "../City+CoreDataProperties.h"; sourceTree = "<group>"; };
+		305CE0071C00EBB4002F875D /* City+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "City+CoreDataProperties.m"; path = "../City+CoreDataProperties.m"; sourceTree = "<group>"; };
+		305CE0081C00EBB4002F875D /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = ../City.h; sourceTree = "<group>"; };
+		305CE0091C00EBB4002F875D /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = ../City.m; sourceTree = "<group>"; };
+		305CE0241C00EDEF002F875D /* AccountPlan+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AccountPlan+CoreDataProperties.h"; path = "../AccountPlan+CoreDataProperties.h"; sourceTree = "<group>"; };
+		305CE0251C00EDEF002F875D /* AccountPlan+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AccountPlan+CoreDataProperties.m"; path = "../AccountPlan+CoreDataProperties.m"; sourceTree = "<group>"; };
+		305CE0261C00EDEF002F875D /* AccountPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountPlan.h; path = ../AccountPlan.h; sourceTree = "<group>"; };
+		305CE0271C00EDEF002F875D /* AccountPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountPlan.m; path = ../AccountPlan.m; sourceTree = "<group>"; };
+		305CE02A1C00EDEF002F875D /* Account+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Account+CoreDataProperties.h"; path = "../Account+CoreDataProperties.h"; sourceTree = "<group>"; };
+		305CE02B1C00EDEF002F875D /* Account+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Account+CoreDataProperties.m"; path = "../Account+CoreDataProperties.m"; sourceTree = "<group>"; };
+		305CE02C1C00EDEF002F875D /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Account.h; path = ../Account.h; sourceTree = "<group>"; };
+		305CE02D1C00EDEF002F875D /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Account.m; path = ../Account.m; sourceTree = "<group>"; };
+		305CE02E1C00EDEF002F875D /* AccountType+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AccountType+CoreDataProperties.h"; path = "../AccountType+CoreDataProperties.h"; sourceTree = "<group>"; };
+		305CE02F1C00EDEF002F875D /* AccountType+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AccountType+CoreDataProperties.m"; path = "../AccountType+CoreDataProperties.m"; sourceTree = "<group>"; };
+		305CE0301C00EDEF002F875D /* AccountType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountType.h; path = ../AccountType.h; sourceTree = "<group>"; };
+		305CE0311C00EDEF002F875D /* AccountType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountType.m; path = ../AccountType.m; sourceTree = "<group>"; };
+		305CE0391C00EE10002F875D /* Currency+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Currency+CoreDataProperties.h"; path = "../Currency+CoreDataProperties.h"; sourceTree = "<group>"; };
+		305CE03A1C00EE10002F875D /* Currency+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Currency+CoreDataProperties.m"; path = "../Currency+CoreDataProperties.m"; sourceTree = "<group>"; };
+		305CE03B1C00EE10002F875D /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Currency.h; path = ../Currency.h; sourceTree = "<group>"; };
+		305CE03C1C00EE10002F875D /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Currency.m; path = ../Currency.m; sourceTree = "<group>"; };
+		305CE03F1C012E53002F875D /* AddingTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddingTypeViewController.h; sourceTree = "<group>"; };
+		305CE0401C012E53002F875D /* AddingTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddingTypeViewController.m; sourceTree = "<group>"; };
+		305CE0421C012E77002F875D /* AddingPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddingPlanViewController.h; sourceTree = "<group>"; };
+		305CE0431C012E77002F875D /* AddingPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddingPlanViewController.m; sourceTree = "<group>"; };
+		305CE0451C01CFB6002F875D /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
+		305CE0461C01CFB6002F875D /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
+		305CE0481C01D347002F875D /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		305CE0491C01D347002F875D /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		305EEE6F1BCAB16B00D0BC0E /* AdbClientRedactor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AdbClientRedactor.xcdatamodel; sourceTree = "<group>"; };
-		305EEE711BCAC2CE00D0BC0E /* City+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "City+CoreDataProperties.h"; path = "../City+CoreDataProperties.h"; sourceTree = "<group>"; };
-		305EEE721BCAC2CE00D0BC0E /* City+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "City+CoreDataProperties.m"; path = "../City+CoreDataProperties.m"; sourceTree = "<group>"; };
-		305EEE731BCAC2CE00D0BC0E /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = ../City.h; sourceTree = "<group>"; };
-		305EEE741BCAC2CE00D0BC0E /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = ../City.m; sourceTree = "<group>"; };
-		305EEE751BCAC2CE00D0BC0E /* Passport+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Passport+CoreDataProperties.h"; path = "../Passport+CoreDataProperties.h"; sourceTree = "<group>"; };
-		305EEE761BCAC2CE00D0BC0E /* Passport+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Passport+CoreDataProperties.m"; path = "../Passport+CoreDataProperties.m"; sourceTree = "<group>"; };
-		305EEE771BCAC2CE00D0BC0E /* Passport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Passport.h; path = ../Passport.h; sourceTree = "<group>"; };
-		305EEE781BCAC2CE00D0BC0E /* Passport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Passport.m; path = ../Passport.m; sourceTree = "<group>"; };
-		305EEE791BCAC2CE00D0BC0E /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "User+CoreDataProperties.h"; path = "../User+CoreDataProperties.h"; sourceTree = "<group>"; };
-		305EEE7A1BCAC2CE00D0BC0E /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+CoreDataProperties.m"; path = "../User+CoreDataProperties.m"; sourceTree = "<group>"; };
-		305EEE7B1BCAC2CE00D0BC0E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../User.h; sourceTree = "<group>"; };
-		305EEE7C1BCAC2CE00D0BC0E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../User.m; sourceTree = "<group>"; };
-		305EEE7D1BCAC2CE00D0BC0E /* Disability+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Disability+CoreDataProperties.h"; path = "../Disability+CoreDataProperties.h"; sourceTree = "<group>"; };
-		305EEE7E1BCAC2CE00D0BC0E /* Disability+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Disability+CoreDataProperties.m"; path = "../Disability+CoreDataProperties.m"; sourceTree = "<group>"; };
-		305EEE7F1BCAC2CE00D0BC0E /* Disability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Disability.h; path = ../Disability.h; sourceTree = "<group>"; };
-		305EEE801BCAC2CE00D0BC0E /* Disability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Disability.m; path = ../Disability.m; sourceTree = "<group>"; };
-		305EEE811BCAC2CE00D0BC0E /* FamilyStatus+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FamilyStatus+CoreDataProperties.h"; path = "../FamilyStatus+CoreDataProperties.h"; sourceTree = "<group>"; };
-		305EEE821BCAC2CE00D0BC0E /* FamilyStatus+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FamilyStatus+CoreDataProperties.m"; path = "../FamilyStatus+CoreDataProperties.m"; sourceTree = "<group>"; };
-		305EEE831BCAC2CE00D0BC0E /* FamilyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FamilyStatus.h; path = ../FamilyStatus.h; sourceTree = "<group>"; };
-		305EEE841BCAC2CE00D0BC0E /* FamilyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FamilyStatus.m; path = ../FamilyStatus.m; sourceTree = "<group>"; };
-		305EEE851BCAC2CE00D0BC0E /* Nationality+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Nationality+CoreDataProperties.h"; path = "../Nationality+CoreDataProperties.h"; sourceTree = "<group>"; };
-		305EEE861BCAC2CE00D0BC0E /* Nationality+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Nationality+CoreDataProperties.m"; path = "../Nationality+CoreDataProperties.m"; sourceTree = "<group>"; };
-		305EEE871BCAC2CE00D0BC0E /* Nationality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Nationality.h; path = ../Nationality.h; sourceTree = "<group>"; };
-		305EEE881BCAC2CE00D0BC0E /* Nationality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Nationality.m; path = ../Nationality.m; sourceTree = "<group>"; };
 		305EEE951BCAF17700D0BC0E /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		305EEE961BCAF17700D0BC0E /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		305EEEBF1BCBD41600D0BC0E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ../SettingsViewController.h; sourceTree = "<group>"; };
@@ -70,7 +119,6 @@
 		30EBB03B1BB8C88800A4E13E /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		30EBB03C1BB8C88800A4E13E /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		30EBB03F1BB8C88800A4E13E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		30EBB0411BB8C88800A4E13E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30EBB0441BB8C88800A4E13E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30EBB0461BB8C88800A4E13E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +134,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3012EB5F1C00D62700BDB060 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				305CE0451C01CFB6002F875D /* TabViewController.h */,
+				305CE0461C01CFB6002F875D /* TabViewController.m */,
+				305CE0481C01D347002F875D /* InfoViewController.h */,
+				305CE0491C01D347002F875D /* InfoViewController.m */,
+				3012EB601C00D64F00BDB060 /* User */,
+				3012EB611C00D66200BDB060 /* Accounts */,
+				3012EB621C00D68800BDB060 /* More */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3012EB601C00D64F00BDB060 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				30EBB0381BB8C88800A4E13E /* MasterViewController.h */,
+				30EBB0391BB8C88800A4E13E /* MasterViewController.m */,
+				30EBB03B1BB8C88800A4E13E /* DetailViewController.h */,
+				30EBB03C1BB8C88800A4E13E /* DetailViewController.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		3012EB611C00D66200BDB060 /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				3012EAE11BFE8B1100BDB060 /* DepositViewController.h */,
+				3012EAE21BFE8B1100BDB060 /* DepositViewController.m */,
+				3012EAE41BFE8BF000BDB060 /* AccountDetailsViewController.h */,
+				3012EAE51BFE8BF000BDB060 /* AccountDetailsViewController.m */,
+				305CE03F1C012E53002F875D /* AddingTypeViewController.h */,
+				305CE0401C012E53002F875D /* AddingTypeViewController.m */,
+				305CE0421C012E77002F875D /* AddingPlanViewController.h */,
+				305CE0431C012E77002F875D /* AddingPlanViewController.m */,
+			);
+			name = Accounts;
+			sourceTree = "<group>";
+		};
+		3012EB621C00D68800BDB060 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				305EEEBF1BCBD41600D0BC0E /* SettingsViewController.h */,
+				305EEEC01BCBD41600D0BC0E /* SettingsViewController.m */,
+			);
+			name = More;
+			sourceTree = "<group>";
+		};
 		305EEE981BCB0EAE00D0BC0E /* dao */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,30 +195,50 @@
 		308F62A41BBA0D1700FE1B6E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				305EEE711BCAC2CE00D0BC0E /* City+CoreDataProperties.h */,
-				305EEE721BCAC2CE00D0BC0E /* City+CoreDataProperties.m */,
-				305EEE731BCAC2CE00D0BC0E /* City.h */,
-				305EEE741BCAC2CE00D0BC0E /* City.m */,
-				305EEE751BCAC2CE00D0BC0E /* Passport+CoreDataProperties.h */,
-				305EEE761BCAC2CE00D0BC0E /* Passport+CoreDataProperties.m */,
-				305EEE771BCAC2CE00D0BC0E /* Passport.h */,
-				305EEE781BCAC2CE00D0BC0E /* Passport.m */,
-				305EEE791BCAC2CE00D0BC0E /* User+CoreDataProperties.h */,
-				305EEE7A1BCAC2CE00D0BC0E /* User+CoreDataProperties.m */,
-				305EEE7B1BCAC2CE00D0BC0E /* User.h */,
-				305EEE7C1BCAC2CE00D0BC0E /* User.m */,
-				305EEE7D1BCAC2CE00D0BC0E /* Disability+CoreDataProperties.h */,
-				305EEE7E1BCAC2CE00D0BC0E /* Disability+CoreDataProperties.m */,
-				305EEE7F1BCAC2CE00D0BC0E /* Disability.h */,
-				305EEE801BCAC2CE00D0BC0E /* Disability.m */,
-				305EEE811BCAC2CE00D0BC0E /* FamilyStatus+CoreDataProperties.h */,
-				305EEE821BCAC2CE00D0BC0E /* FamilyStatus+CoreDataProperties.m */,
-				305EEE831BCAC2CE00D0BC0E /* FamilyStatus.h */,
-				305EEE841BCAC2CE00D0BC0E /* FamilyStatus.m */,
-				305EEE851BCAC2CE00D0BC0E /* Nationality+CoreDataProperties.h */,
-				305EEE861BCAC2CE00D0BC0E /* Nationality+CoreDataProperties.m */,
-				305EEE871BCAC2CE00D0BC0E /* Nationality.h */,
-				305EEE881BCAC2CE00D0BC0E /* Nationality.m */,
+				305CE0391C00EE10002F875D /* Currency+CoreDataProperties.h */,
+				305CE03A1C00EE10002F875D /* Currency+CoreDataProperties.m */,
+				305CE03B1C00EE10002F875D /* Currency.h */,
+				305CE03C1C00EE10002F875D /* Currency.m */,
+				305CE0241C00EDEF002F875D /* AccountPlan+CoreDataProperties.h */,
+				305CE0251C00EDEF002F875D /* AccountPlan+CoreDataProperties.m */,
+				305CE0261C00EDEF002F875D /* AccountPlan.h */,
+				305CE0271C00EDEF002F875D /* AccountPlan.m */,
+				305CE02A1C00EDEF002F875D /* Account+CoreDataProperties.h */,
+				305CE02B1C00EDEF002F875D /* Account+CoreDataProperties.m */,
+				305CE02C1C00EDEF002F875D /* Account.h */,
+				305CE02D1C00EDEF002F875D /* Account.m */,
+				305CE02E1C00EDEF002F875D /* AccountType+CoreDataProperties.h */,
+				305CE02F1C00EDEF002F875D /* AccountType+CoreDataProperties.m */,
+				305CE0301C00EDEF002F875D /* AccountType.h */,
+				305CE0311C00EDEF002F875D /* AccountType.m */,
+				305CDFE21C00EBB4002F875D /* User+CoreDataProperties.h */,
+				305CDFE31C00EBB4002F875D /* User+CoreDataProperties.m */,
+				305CDFE41C00EBB4002F875D /* User.h */,
+				305CDFE51C00EBB4002F875D /* User.m */,
+				305CDFE61C00EBB4002F875D /* Passport+CoreDataProperties.h */,
+				305CDFE71C00EBB4002F875D /* Passport+CoreDataProperties.m */,
+				305CDFE81C00EBB4002F875D /* Passport.h */,
+				305CDFE91C00EBB4002F875D /* Passport.m */,
+				305CDFEA1C00EBB4002F875D /* Card+CoreDataProperties.h */,
+				305CDFEB1C00EBB4002F875D /* Card+CoreDataProperties.m */,
+				305CDFEC1C00EBB4002F875D /* Card.h */,
+				305CDFED1C00EBB4002F875D /* Card.m */,
+				305CDFF21C00EBB4002F875D /* Nationality+CoreDataProperties.h */,
+				305CDFF31C00EBB4002F875D /* Nationality+CoreDataProperties.m */,
+				305CDFF41C00EBB4002F875D /* Nationality.h */,
+				305CDFF51C00EBB4002F875D /* Nationality.m */,
+				305CDFF61C00EBB4002F875D /* Disability+CoreDataProperties.h */,
+				305CDFF71C00EBB4002F875D /* Disability+CoreDataProperties.m */,
+				305CDFF81C00EBB4002F875D /* Disability.h */,
+				305CDFF91C00EBB4002F875D /* Disability.m */,
+				305CDFFE1C00EBB4002F875D /* FamilyStatus+CoreDataProperties.h */,
+				305CDFFF1C00EBB4002F875D /* FamilyStatus+CoreDataProperties.m */,
+				305CE0001C00EBB4002F875D /* FamilyStatus.h */,
+				305CE0011C00EBB4002F875D /* FamilyStatus.m */,
+				305CE0061C00EBB4002F875D /* City+CoreDataProperties.h */,
+				305CE0071C00EBB4002F875D /* City+CoreDataProperties.m */,
+				305CE0081C00EBB4002F875D /* City.h */,
+				305CE0091C00EBB4002F875D /* City.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -129,6 +246,7 @@
 		30EBB0231BB8C88800A4E13E = {
 			isa = PBXGroup;
 			children = (
+				3012EADC1BFE848F00BDB060 /* Assets.xcassets */,
 				305EEE6E1BCAB16B00D0BC0E /* AdbClientRedactor.xcdatamodeld */,
 				30EBB03E1BB8C88800A4E13E /* Main.storyboard */,
 				30EBB02E1BB8C88800A4E13E /* AdbClientRedactor */,
@@ -149,15 +267,9 @@
 			children = (
 				305EEE981BCB0EAE00D0BC0E /* dao */,
 				308F62A41BBA0D1700FE1B6E /* Model */,
+				3012EB5F1C00D62700BDB060 /* Controllers */,
 				30EBB0321BB8C88800A4E13E /* AppDelegate.h */,
 				30EBB0331BB8C88800A4E13E /* AppDelegate.m */,
-				30EBB0381BB8C88800A4E13E /* MasterViewController.h */,
-				30EBB0391BB8C88800A4E13E /* MasterViewController.m */,
-				30EBB03B1BB8C88800A4E13E /* DetailViewController.h */,
-				30EBB03C1BB8C88800A4E13E /* DetailViewController.m */,
-				305EEEBF1BCBD41600D0BC0E /* SettingsViewController.h */,
-				305EEEC01BCBD41600D0BC0E /* SettingsViewController.m */,
-				30EBB0411BB8C88800A4E13E /* Assets.xcassets */,
 				30EBB0431BB8C88800A4E13E /* LaunchScreen.storyboard */,
 				30EBB0461BB8C88800A4E13E /* Info.plist */,
 				30EBB02F1BB8C88800A4E13E /* Supporting Files */,
@@ -232,7 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30EBB0451BB8C88800A4E13E /* LaunchScreen.storyboard in Resources */,
-				30EBB0421BB8C88800A4E13E /* Assets.xcassets in Resources */,
+				3012EADD1BFE848F00BDB060 /* Assets.xcassets in Resources */,
 				30EBB0401BB8C88800A4E13E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,25 +356,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				305EEE911BCAC2CE00D0BC0E /* FamilyStatus+CoreDataProperties.m in Sources */,
-				305EEE931BCAC2CE00D0BC0E /* Nationality+CoreDataProperties.m in Sources */,
-				305EEE941BCAC2CE00D0BC0E /* Nationality.m in Sources */,
-				305EEE8B1BCAC2CE00D0BC0E /* Passport+CoreDataProperties.m in Sources */,
+				305CE00A1C00EBB4002F875D /* User+CoreDataProperties.m in Sources */,
+				305CE0191C00EBB4002F875D /* FamilyStatus.m in Sources */,
+				305CE0471C01CFB6002F875D /* TabViewController.m in Sources */,
+				305CE0371C00EDEF002F875D /* AccountType+CoreDataProperties.m in Sources */,
+				3012EAE61BFE8BF000BDB060 /* AccountDetailsViewController.m in Sources */,
+				305CE0361C00EDEF002F875D /* Account.m in Sources */,
 				30EBB03D1BB8C88800A4E13E /* DetailViewController.m in Sources */,
+				305CE0131C00EBB4002F875D /* Nationality.m in Sources */,
+				305CE0331C00EDEF002F875D /* AccountPlan.m in Sources */,
+				305CE00C1C00EBB4002F875D /* Passport+CoreDataProperties.m in Sources */,
+				305CE0321C00EDEF002F875D /* AccountPlan+CoreDataProperties.m in Sources */,
+				3012EAE31BFE8B1100BDB060 /* DepositViewController.m in Sources */,
+				305CE01D1C00EBB4002F875D /* City.m in Sources */,
+				305CE0351C00EDEF002F875D /* Account+CoreDataProperties.m in Sources */,
+				305CE00F1C00EBB4002F875D /* Card.m in Sources */,
+				305CE03D1C00EE10002F875D /* Currency+CoreDataProperties.m in Sources */,
+				305CE0141C00EBB4002F875D /* Disability+CoreDataProperties.m in Sources */,
+				305CE00E1C00EBB4002F875D /* Card+CoreDataProperties.m in Sources */,
 				305EEE701BCAB16C00D0BC0E /* AdbClientRedactor.xcdatamodeld in Sources */,
-				305EEE8C1BCAC2CE00D0BC0E /* Passport.m in Sources */,
 				305EEE971BCAF17700D0BC0E /* DataManager.m in Sources */,
-				305EEE8A1BCAC2CE00D0BC0E /* City.m in Sources */,
-				305EEE891BCAC2CE00D0BC0E /* City+CoreDataProperties.m in Sources */,
+				305CE0151C00EBB4002F875D /* Disability.m in Sources */,
+				305CE01C1C00EBB4002F875D /* City+CoreDataProperties.m in Sources */,
+				305CE00D1C00EBB4002F875D /* Passport.m in Sources */,
+				305CE03E1C00EE10002F875D /* Currency.m in Sources */,
+				305CE0121C00EBB4002F875D /* Nationality+CoreDataProperties.m in Sources */,
+				305CE0181C00EBB4002F875D /* FamilyStatus+CoreDataProperties.m in Sources */,
+				305CE0381C00EDEF002F875D /* AccountType.m in Sources */,
+				305CE00B1C00EBB4002F875D /* User.m in Sources */,
 				30EBB03A1BB8C88800A4E13E /* MasterViewController.m in Sources */,
 				305EEEC11BCBD41600D0BC0E /* SettingsViewController.m in Sources */,
+				305CE0411C012E53002F875D /* AddingTypeViewController.m in Sources */,
+				305CE0441C012E77002F875D /* AddingPlanViewController.m in Sources */,
 				30EBB0341BB8C88800A4E13E /* AppDelegate.m in Sources */,
-				305EEE8E1BCAC2CE00D0BC0E /* User.m in Sources */,
+				305CE04A1C01D347002F875D /* InfoViewController.m in Sources */,
 				30EBB0311BB8C88800A4E13E /* main.m in Sources */,
-				305EEE901BCAC2CE00D0BC0E /* Disability.m in Sources */,
-				305EEE8F1BCAC2CE00D0BC0E /* Disability+CoreDataProperties.m in Sources */,
-				305EEE8D1BCAC2CE00D0BC0E /* User+CoreDataProperties.m in Sources */,
-				305EEE921BCAC2CE00D0BC0E /* FamilyStatus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +500,6 @@
 		30EBB04A1BB8C88800A4E13E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AdbClientRedactor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.muon.AdbClientRedactor;
@@ -383,7 +510,6 @@
 		30EBB04B1BB8C88800A4E13E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AdbClientRedactor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.muon.AdbClientRedactor;

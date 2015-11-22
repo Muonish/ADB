@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InfoViewController.h"
 #import "DataManager.h"
 #import "User.h"
 #import "Passport.h"
@@ -15,10 +16,9 @@
 #import "Nationality.h"
 
 
-@interface DetailViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface DetailViewController : InfoViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (strong, nonatomic) User *detailItem;
-@property (strong, nonatomic) DataManager *dataManager;
 
 
 @property (strong, nonatomic) NSMutableDictionary *pickersDictionary;

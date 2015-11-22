@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15A284" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
+    <entity name="Account" representedClassName="Account" syncable="YES">
+        <attribute name="agreementNumber" attributeType="String" syncable="YES"/>
+        <attribute name="credit" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="debet" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="isMain" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="saldo" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="startDate" attributeType="Date" syncable="YES"/>
+        <relationship name="card" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Card" inverseName="account" inverseEntity="Card" syncable="YES"/>
+        <relationship name="type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountType" inverseName="accounts" inverseEntity="AccountType" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="accounts" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="AccountPlan" representedClassName="AccountPlan" syncable="YES">
+        <attribute name="activity" attributeType="String" syncable="YES"/>
+        <attribute name="code" attributeType="String" syncable="YES"/>
+        <attribute name="isDeposit" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="accountTypes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AccountType" inverseName="accountPlan" inverseEntity="AccountType" syncable="YES"/>
+    </entity>
+    <entity name="AccountType" representedClassName="AccountType" syncable="YES">
+        <attribute name="durationMonth" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="percent" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="accountPlan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountPlan" inverseName="accountTypes" inverseEntity="AccountPlan" syncable="YES"/>
+        <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Account" inverseName="type" inverseEntity="Account" syncable="YES"/>
+        <relationship name="currency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="accountTypes" inverseEntity="Currency" syncable="YES"/>
+    </entity>
+    <entity name="Card" representedClassName="Card" syncable="YES">
+        <attribute name="number" attributeType="String" syncable="YES"/>
+        <attribute name="numberOfAttempts" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="password" attributeType="String" syncable="YES"/>
+        <relationship name="account" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="card" inverseEntity="Account" syncable="YES"/>
+    </entity>
     <entity name="City" representedClassName="City" syncable="YES">
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="livingCity" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Currency" representedClassName="Currency" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="accountTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AccountType" inverseName="currency" inverseEntity="AccountType" syncable="YES"/>
     </entity>
     <entity name="Disability" representedClassName="Disability" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -40,6 +77,7 @@
         <attribute name="placeOfWork" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="registrationAddress" attributeType="String" syncable="YES"/>
+        <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Account" inverseName="user" inverseEntity="Account" syncable="YES"/>
         <relationship name="disability" maxCount="1" deletionRule="Nullify" destinationEntity="Disability" inverseName="user" inverseEntity="Disability" syncable="YES"/>
         <relationship name="familyStatus" maxCount="1" deletionRule="Nullify" destinationEntity="FamilyStatus" inverseName="user" inverseEntity="FamilyStatus" syncable="YES"/>
         <relationship name="livingCity" maxCount="1" deletionRule="Nullify" destinationEntity="City" inverseName="user" inverseEntity="City" syncable="YES"/>
@@ -47,11 +85,16 @@
         <relationship name="passport" maxCount="1" deletionRule="Cascade" destinationEntity="Passport" inverseName="user" inverseEntity="Passport" syncable="YES"/>
     </entity>
     <elements>
-        <element name="City" positionX="-4151" positionY="1134" width="128" height="73"/>
-        <element name="Disability" positionX="-4232" positionY="936" width="128" height="73"/>
+        <element name="Account" positionX="-4736" positionY="770" width="128" height="193"/>
+        <element name="Card" positionX="-4934" positionY="846" width="128" height="103"/>
+        <element name="City" positionX="-4158" positionY="1142" width="128" height="73"/>
+        <element name="Currency" positionX="-4725" positionY="1206" width="128" height="73"/>
+        <element name="Disability" positionX="-4230" positionY="971" width="128" height="73"/>
         <element name="FamilyStatus" positionX="-4158" positionY="1052" width="128" height="73"/>
-        <element name="Nationality" positionX="-4151" positionY="1224" width="128" height="73"/>
-        <element name="Passport" positionX="-4232" positionY="1332" width="128" height="133"/>
-        <element name="User" positionX="-4491" positionY="896" width="153" height="343"/>
+        <element name="Nationality" positionX="-4158" positionY="1224" width="128" height="73"/>
+        <element name="Passport" positionX="-4232" positionY="1307" width="128" height="133"/>
+        <element name="User" positionX="-4491" positionY="896" width="153" height="358"/>
+        <element name="AccountType" positionX="-4734" positionY="1026" width="128" height="133"/>
+        <element name="AccountPlan" positionX="-4896" positionY="1026" width="128" height="118"/>
     </elements>
 </model>

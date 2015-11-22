@@ -7,7 +7,6 @@
 //
 
 #import "MasterViewController.h"
-#import "DetailViewController.h"
 
 @interface MasterViewController ()
 
@@ -15,19 +14,12 @@
 
 @implementation MasterViewController
 
-- (NSManagedObjectContext*) managedObjectContext {
-
-    if (!_managedObjectContext) {
-        _managedObjectContext = [[DataManager sharedManager] managedObjectContext];
-    }
-    return _managedObjectContext;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.isEdit = YES;
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.editButtonItem.title = @"Delete";
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
@@ -49,6 +41,21 @@
     [self performSegueWithIdentifier:@"showDetail" sender:self];
     self.isEdit = YES;
 
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    // Make sure you call super first
+    [super setEditing:editing animated:animated];
+
+    if (editing)
+    {
+        self.editButtonItem.title = NSLocalizedString(@"Done", @"Done");
+    }
+    else
+    {
+        self.editButtonItem.title = NSLocalizedString(@"Delete", @"Delete");
+    }
 }
 
 
@@ -106,29 +113,14 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    User *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@",
-                           [[object valueForKey:@"firstName"] description],
-                           [[object valueForKey:@"middleName"] description],
-                           [[object valueForKey:@"lastName"] description]];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Passport" inManagedObjectContext:self.managedObjectContext];
-    NSPredicate* predicate =
-    [NSPredicate predicateWithFormat:@"user == %@", object];
-
-    [fetchRequest setPredicate:predicate];
-    [fetchRequest setEntity:entity];
-
-    NSError* requestError = nil;
-    NSArray* resultArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
-    if (requestError) {
-        NSLog(@"%@", [requestError localizedDescription]);
-    }
+                               object.firstName, object.middleName, object.lastName ];
 
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@",
-                                 [[resultArray.firstObject valueForKey:@"seria"] description],
-                                 [[resultArray.firstObject valueForKey:@"number"] description]];
+                                 object.passport.seria, object.passport.number];
+
 }
 
 #pragma mark - Fetched results controller
@@ -221,15 +213,5 @@
 {
     [self.tableView endUpdates];
 }
-
-/*
-// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    // In the simplest, most efficient, case, reload the table view.
-    [self.tableView reloadData];
-}
- */
 
 @end

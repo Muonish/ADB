@@ -2,7 +2,7 @@
 //  City+CoreDataProperties.h
 //  AdbClientRedactor
 //
-//  Created by Valeryia Breshko on 10/11/15.
+//  Created by Valeryia Breshko on 11/21/15.
 //  Copyright © 2015 Valeria Breshko. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,16 +16,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface City (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *name;
-@property (nullable, nonatomic, retain) NSSet<NSManagedObject *> *user;
+@property (nullable, nonatomic, retain) NSSet<User *> *user;
 
 @end
 
 @interface City (CoreDataGeneratedAccessors)
 
-- (void)addUserObject:(NSManagedObject *)value;
-- (void)removeUserObject:(NSManagedObject *)value;
-- (void)addUser:(NSSet<NSManagedObject *> *)values;
-- (void)removeUser:(NSSet<NSManagedObject *> *)values;
+- (void)addUserObject:(User *)value;
+- (void)removeUserObject:(User *)value;
+- (void)addUser:(NSSet<User *> *)values;
+- (void)removeUser:(NSSet<User *> *)values;
 
 @end
 

@@ -14,6 +14,11 @@
 #import "FamilyStatus.h"
 #import "User.h"
 #import "Passport.h"
+#import "Account.h"
+#import "AccountPlan.h"
+#import "AccountType.h"
+#import "Currency.h"
+#import "Card.h"
 
 @interface DataManager : NSObject
 
@@ -35,11 +40,21 @@
 - (City *)selectCityWithName: (NSString *)name;
 - (FamilyStatus *)selectFamilyStatusWithName: (NSString *)name;
 - (NSArray *)loadNames: (NSString*) entytyName;
+- (NSArray *)loadUsersNameSeriaNumber;
 
 - (NSString *)addDisabilityWithName: (NSString *)name;
 - (NSString *)addNationalityWithName: (NSString *)name;
 - (NSString *)addCityWithName: (NSString *)name;
 - (NSString *)addFamilyStatusWithName: (NSString *)name;
+
+//////////////Operations with accounts tables///////////////////
+- (AccountType *)selectAccountTypeWithName: (NSString *)name;
+- (AccountPlan *)selectAccountPlanWithName: (NSString *)name;
+- (Currency *)selectCurrencyWithName: (NSString *)name;
+- (NSString *)addAccount: (Account *)account;
+- (NSString *)addAccountType: (AccountType *)accountType;
+- (NSString *)addCurrencyWithName: (NSString *)name;
+- (NSString *)addAccountPlan: (AccountPlan *)accountPlan;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

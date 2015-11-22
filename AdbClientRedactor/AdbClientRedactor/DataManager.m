@@ -10,7 +10,7 @@
 
 @implementation DataManager
 
-static NSString *const cStoreURL = @"file:///Users/Muon/BSUIR/AdbClientRedactor.sqlite";
+//static NSString *const cStoreURL = @"file:///Users/Muon/BSUIR/AdbClientRedactor.sqlite";
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -32,7 +32,7 @@ static NSString *const cStoreURL = @"file:///Users/Muon/BSUIR/AdbClientRedactor.
 - (NSString *)addUser: (User *)user {
     NSString *result = [self validateUser:user];
     if(!result) {
-        NSString *result = [self validateUserPassport:user.passport];
+        result = [self validateUserPassport:user.passport];
         if (!result) {
             [self saveContext];
             return nil;
@@ -151,7 +151,7 @@ static NSString *const cStoreURL = @"file:///Users/Muon/BSUIR/AdbClientRedactor.
     if (![user.eMail isEqual: @""]){
         if (![self validateEmail:user.eMail]) {
             [self.managedObjectContext reset];
-            return @"Enter the valid e-mail! (myemale321@mail.ru)";
+            return @"Enter the valid e-mail! (myemail321@mail.ru)";
         }
     }
 
@@ -282,6 +282,25 @@ static NSString *const cStoreURL = @"file:///Users/Muon/BSUIR/AdbClientRedactor.
     return [resultArray firstObject];
 }
 
+- (NSArray *)loadUsersNameSeriaNumber{
+    NSFetchRequest *fetch=[[NSFetchRequest alloc] init];
+    NSEntityDescription *testEntity=[NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    [fetch setEntity:testEntity];
+
+    NSError *fetchError =  nil;
+    NSArray *fetchedObjs = [self.managedObjectContext executeFetchRequest:fetch error:&fetchError];
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (User *object in fetchedObjs) {
+        [result addObject: [NSString stringWithFormat:@"%@ %@%@",
+                            object.lastName, object.passport.seria, object.passport.number]];
+    }
+    if (fetchError!=nil) {
+        NSLog(@" fetchError=%@,details=%@",fetchError,fetchError.userInfo);
+        return nil;
+    }
+    return result;
+}
+
 - (NSArray *)loadNames: (NSString*) entytyName{
     NSFetchRequest *fetch=[[NSFetchRequest alloc] init];
     NSEntityDescription *testEntity=[NSEntityDescription entityForName:entytyName inManagedObjectContext:self.managedObjectContext];
@@ -350,7 +369,178 @@ static NSString *const cStoreURL = @"file:///Users/Muon/BSUIR/AdbClientRedactor.
     [self saveContext];
 }
 
+#pragma mark - Account tables
+
+- (Account *)selectAccountWithNumber: (NSString *)agreement{
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+
+    NSEntityDescription* description =
+    [NSEntityDescription entityForName:@"Account"
+                inManagedObjectContext:self.managedObjectContext];
+
+    NSPredicate* predicate =
+    [NSPredicate predicateWithFormat:@"agreementNumber == %@", agreement];
+
+    [request setPredicate:predicate];
+    [request setEntity:description];
+
+    NSError* requestError = nil;
+    NSArray* resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    if (requestError) {
+        NSLog(@"%@", [requestError localizedDescription]);
+    }
+
+    return [resultArray firstObject];
+}
+
+- (AccountType *)selectAccountTypeWithName: (NSString *)name{
+    return [self selectFromTableByName:@"AccountType" name:name];
+}
+- (AccountPlan *)selectAccountPlanWithName: (NSString *)name{
+    return [self selectFromTableByName:@"AccountPlan" name:name];
+}
+
+- (Currency *)selectCurrencyWithName: (NSString *)name{
+    return [self selectFromTableByName:@"Currency" name:name];
+}
+
+- (NSString *)addCurrencyWithName: (NSString *)name{
+    Currency *selected = [self selectCurrencyWithName:name];
+    if (selected) {
+        return @"This item has already exists.";
+    }
+    [self addWithName:@"Currency" fieldName:@"name" value:name];
+    return nil;
+}
+
+- (NSString *)addAccount: (Account *)account{
+    NSString *result = [self validateAccount:account];
+    if(!result) {
+        id selected = [self selectAccountWithNumber:account.agreementNumber];
+        if (selected) {
+            [self.managedObjectContext deleteObject:account];
+            return @"Account with this agreement number has already exists.";
+        } else {
+            Account * percentAccount = [NSEntityDescription insertNewObjectForEntityForName:@"Account"
+                                                              inManagedObjectContext:self.managedObjectContext];
+            percentAccount.type = account.type;
+            percentAccount.agreementNumber = account.agreementNumber;
+            percentAccount.credit = [NSNumber numberWithInt:0];
+            percentAccount.debet = [NSNumber numberWithInt:0];
+            percentAccount.saldo = [NSNumber numberWithInt:0];
+            percentAccount.isMain = [NSNumber numberWithBool:NO];
+            percentAccount.startDate = account.startDate;
+            percentAccount.endDate = account.endDate;
+            [self saveContext];
+            return nil;
+        }
+    }
+    [self.managedObjectContext deleteObject:account];
+    [self saveContext];
+
+    return result;
+}
+
+- (NSString *)addAccountType: (AccountType *)accountType{
+    NSString *result = [self validateAccountType:accountType];
+    if(!result) {
+        id selected = [self selectFromTableByName:@"AccounType" name:accountType.name];
+        if (selected ) {
+            [self.managedObjectContext deleteObject:accountType];
+            return @"Account type with this name has already exists.";
+        } else {
+            [self saveContext];
+            return nil;
+        }
+    }
+    [self.managedObjectContext deleteObject:accountType];
+    [self saveContext];
+
+    return result;
+}
+
+- (NSString *)addAccountPlan: (AccountPlan *)accountPlan{
+    NSString *result = [self validateAccountPlan:accountPlan];
+    if(!result) {
+        [self saveContext];
+        return nil;
+    }
+    [self.managedObjectContext deleteObject:accountPlan];
+    [self saveContext];
+
+    return result;
+}
+
 #pragma mark - Validation
+
+- (NSString *)validateAccount: (Account *)account{
+
+    if (!account.agreementNumber || !account.credit || !account.debet || !account.saldo ||
+        !account.endDate || !account.startDate || !account.type || !account.user) {
+
+        [self.managedObjectContext reset];
+        return @"Fill all fields with * sign.";
+    }
+
+    return nil;
+}
+
+- (NSString *)validateAccountType: (AccountType *)accountType{
+
+    if (!accountType.durationMonth || !accountType.name || !accountType.percent ||
+        !accountType.accountPlan || !accountType.currency) {
+
+        [self.managedObjectContext reset];
+        return @"Fill all fields with * sign.";
+    }
+
+    if (![self validatePercents:[NSString stringWithFormat:@"%d", [accountType.percent intValue]]]) {
+        [self.managedObjectContext reset];
+        return @"Enter the valid percents! (1 - 99)";
+    }
+
+    return nil;
+}
+
+- (NSString *)validateAccountPlan: (AccountPlan *)accountPlan{
+
+    if (!accountPlan.activity || !accountPlan.code || !accountPlan.name) {
+
+        [self.managedObjectContext reset];
+        return @"Fill all fields with * sign.";
+    }
+
+    if (![self validateAccountPlanCode: accountPlan.code]) {
+        [self.managedObjectContext reset];
+        return @"Enter the valid code with 4 digits! (1111)";
+    }
+
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+
+    NSEntityDescription* description =
+    [NSEntityDescription entityForName:@"AccountPlan"
+                inManagedObjectContext:self.managedObjectContext];
+
+    NSPredicate* predicate =
+    [NSPredicate predicateWithFormat:@"code == %@", accountPlan.code];
+
+    [request setPredicate:predicate];
+    [request setEntity:description];
+
+    NSError* requestError = nil;
+    NSArray* resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    if (requestError) {
+        NSLog(@"%@", [requestError localizedDescription]);
+    }
+
+    id selected = [self selectFromTableByName:@"AccountType" name:accountPlan.name];
+    if (selected) {
+        return  @"Account plan with this name has alresdy exists.";
+    }
+    
+    return nil;
+}
+
 
 - (BOOL)validateName:(NSString*)value
 {
@@ -440,6 +630,41 @@ static NSString *const cStoreURL = @"file:///Users/Muon/BSUIR/AdbClientRedactor.
     }
 }
 
+- (BOOL)validateAccountPlanCode:(NSString*)value{
+    NSString *searchedString = value;
+    NSRange   searchedRange = NSMakeRange(0, [searchedString length]);
+    NSString *pattern = @"^[0-9][0-9][0-9][0-9]$";
+    NSError  *error = nil;
+
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern: pattern options:0 error:&error];
+    NSArray* matches = [regex matchesInString:searchedString options:0 range: searchedRange];
+
+
+    if (matches.count != 1) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)validatePercents:(NSString*)value
+{
+    NSString *searchedString = value;
+    NSRange   searchedRange = NSMakeRange(0, [searchedString length]);
+    NSString *pattern = @"^[1-9][0-9]$";
+    NSError  *error = nil;
+
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern: pattern options:0 error:&error];
+    NSArray* matches = [regex matchesInString:searchedString options:0 range: searchedRange];
+
+
+    if (matches.count != 1) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
 - (BOOL)validateEmail:(NSString*)value
 {
     NSString *searchedString = value;
@@ -503,10 +728,9 @@ static NSString *const cStoreURL = @"file:///Users/Muon/BSUIR/AdbClientRedactor.
     // Create the coordinator and store
 
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    //NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"AdbClientRedactor.sqlite"];
-    id s = [self applicationDocumentsDirectory];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"AdbClientRedactor.sqlite"];
     //NSURL *storeURL = [[NSURL alloc] init];
-    NSURL *storeURL = [[NSURL alloc] initWithString:cStoreURL];
+    //NSURL *storeURL = [[NSURL alloc] initWithString:cStoreURL];
 
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
@@ -521,7 +745,6 @@ static NSString *const cStoreURL = @"file:///Users/Muon/BSUIR/AdbClientRedactor.
 }
 
 - (void)dropDataBase {
-    NSURL *storeURL = [[NSURL alloc] initWithString:cStoreURL];
     [_managedObjectContext lock];
     NSArray *stores = [_persistentStoreCoordinator persistentStores];
     for(NSPersistentStore *store in stores) {

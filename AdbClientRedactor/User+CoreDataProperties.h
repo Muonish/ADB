@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.h
 //  AdbClientRedactor
 //
-//  Created by Valeryia Breshko on 10/11/15.
+//  Created by Valeryia Breshko on 11/21/15.
 //  Copyright © 2015 Valeria Breshko. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -10,11 +10,6 @@
 //
 
 #import "User.h"
-#import "Disability.h"
-#import "FamilyStatus.h"
-#import "City.h"
-#import "Nationality.h"
-#import "Passport.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,11 +30,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *placeOfWork;
 @property (nullable, nonatomic, retain) NSString *position;
 @property (nullable, nonatomic, retain) NSString *registrationAddress;
+@property (nullable, nonatomic, retain) NSSet<Account *> *accounts;
 @property (nullable, nonatomic, retain) Disability *disability;
 @property (nullable, nonatomic, retain) FamilyStatus *familyStatus;
 @property (nullable, nonatomic, retain) City *livingCity;
 @property (nullable, nonatomic, retain) Nationality *nationality;
 @property (nullable, nonatomic, retain) Passport *passport;
+
+@end
+
+@interface User (CoreDataGeneratedAccessors)
+
+- (void)addAccountsObject:(Account *)value;
+- (void)removeAccountsObject:(Account *)value;
+- (void)addAccounts:(NSSet<Account *> *)values;
+- (void)removeAccounts:(NSSet<Account *> *)values;
 
 @end
 
