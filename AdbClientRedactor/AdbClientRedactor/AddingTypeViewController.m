@@ -54,7 +54,7 @@ static NSString *const cCurrency = @"Currency";
 
     NSString *result = [self.dataManager addAccountType:newAccountType];
     if(result){
-        [self showAlertWithTitle:@"ERROR" andMessage:result];
+        [self showAlertWithTitle:@"ERROR" message:result andHandler:nil];
     } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -80,7 +80,7 @@ static NSString *const cCurrency = @"Currency";
 
         NSString* result = [self.dataManager addCurrencyWithName:alert.textFields.firstObject.text];
         if (result){
-            [self showAlertWithTitle:@"ERROR" andMessage:result];
+            [self showAlertWithTitle:@"ERROR" message:result andHandler:nil];
         } else {
             [self configureView];
         }

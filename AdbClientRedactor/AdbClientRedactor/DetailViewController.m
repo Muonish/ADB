@@ -116,7 +116,7 @@ static NSString *const cCity = @"City";
 
     NSString *result = [self.dataManager updateUserByID:oldUser.passport.identNumber toNewUser:newUser];
     if(result){
-        [self showAlertWithTitle:@"ERROR" andMessage:result];
+        [self showAlertWithTitle:@"ERROR" message:result andHandler:nil];
         self.detailItem = nil;
         return NO;
     } else {
@@ -131,7 +131,7 @@ static NSString *const cCity = @"City";
 
     NSString *result = [self.dataManager addUser:newUser];
     if(result){
-        [self showAlertWithTitle:@"ERROR" andMessage:result];
+        [self showAlertWithTitle:@"ERROR" message:result andHandler:nil];
         self.detailItem = nil;
         return NO;
     } else {
@@ -249,13 +249,12 @@ static NSString *const cCity = @"City";
 
         NSString* result = [self.dataManager addFamilyStatusWithName:alert.textFields.firstObject.text];
         if (result){
-            [self showAlertWithTitle:@"ERROR" andMessage:result];
+            [self showAlertWithTitle:@"ERROR" message:result andHandler:nil];
         } else {
             [self configureView];
         }
         
     }]];
-
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Status";
@@ -271,7 +270,7 @@ static NSString *const cCity = @"City";
 
         NSString* result = [self.dataManager addNationalityWithName:alert.textFields.firstObject.text];
         if (result){
-            [self showAlertWithTitle:@"ERROR" andMessage:result];
+            [self showAlertWithTitle:@"ERROR" message:result andHandler:nil];
         } else {
             [self configureView];
         }
@@ -291,7 +290,7 @@ static NSString *const cCity = @"City";
     [alert addAction:[UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString* result = [self.dataManager addDisabilityWithName:alert.textFields.firstObject.text];
         if (result){
-            [self showAlertWithTitle:@"ERROR" andMessage:result];
+            [self showAlertWithTitle:@"ERROR" message:result andHandler:nil];
         } else {
             [self configureView];
         }
@@ -311,7 +310,7 @@ static NSString *const cCity = @"City";
 
         NSString* result = [self.dataManager addCityWithName:alert.textFields.firstObject.text];
         if (result){
-            [self showAlertWithTitle:@"ERROR" andMessage:result];
+            [self showAlertWithTitle:@"ERROR" message:result andHandler:nil];
         } else {
             [self configureView];
         }

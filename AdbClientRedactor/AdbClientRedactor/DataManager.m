@@ -127,7 +127,7 @@
             !user.registrationAddress || !user.livingAddress || !user.livingCity || !user.monthlyIncome) {
 
         [self.managedObjectContext reset];
-        return @"Fill all fields with * sign.";
+        return @"Fill in all fields with * sign.";
     }
 
     if (![self validateName:user.firstName] || ![self validateName:user.middleName] ||
@@ -282,23 +282,15 @@
     return [resultArray firstObject];
 }
 
-- (NSArray *)loadUsersNameSeriaNumber{
+- (NSArray *)loadUsers{
     NSFetchRequest *fetch=[[NSFetchRequest alloc] init];
     NSEntityDescription *testEntity=[NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
     [fetch setEntity:testEntity];
 
     NSError *fetchError =  nil;
     NSArray *fetchedObjs = [self.managedObjectContext executeFetchRequest:fetch error:&fetchError];
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (User *object in fetchedObjs) {
-        [result addObject: [NSString stringWithFormat:@"%@ %@%@",
-                            object.lastName, object.passport.seria, object.passport.number]];
-    }
-    if (fetchError!=nil) {
-        NSLog(@" fetchError=%@,details=%@",fetchError,fetchError.userInfo);
-        return nil;
-    }
-    return result;
+
+    return fetchedObjs;
 }
 
 - (NSArray *)loadNames: (NSString*) entytyName{
@@ -416,24 +408,22 @@
 - (NSString *)addAccount: (Account *)account{
     NSString *result = [self validateAccount:account];
     if(!result) {
-        id selected = [self selectAccountWithNumber:account.agreementNumber];
-        if (selected) {
-            [self.managedObjectContext deleteObject:account];
-            return @"Account with this agreement number has already exists.";
-        } else {
-            Account * percentAccount = [NSEntityDescription insertNewObjectForEntityForName:@"Account"
-                                                              inManagedObjectContext:self.managedObjectContext];
-            percentAccount.type = account.type;
-            percentAccount.agreementNumber = account.agreementNumber;
-            percentAccount.credit = [NSNumber numberWithInt:0];
-            percentAccount.debet = [NSNumber numberWithInt:0];
-            percentAccount.saldo = [NSNumber numberWithInt:0];
-            percentAccount.isMain = [NSNumber numberWithBool:NO];
-            percentAccount.startDate = account.startDate;
-            percentAccount.endDate = account.endDate;
+
+        Account * percentAccount = [NSEntityDescription insertNewObjectForEntityForName:@"Account"
+                                                          inManagedObjectContext:self.managedObjectContext];
+        percentAccount.type = account.type;
+        percentAccount.agreementNumber = account.agreementNumber;
+        percentAccount.credit = [NSNumber numberWithInt:0];
+        percentAccount.debet = [NSNumber numberWithInt:0];
+        percentAccount.saldo = [NSNumber numberWithInt:0];
+        percentAccount.isMain = [NSNumber numberWithBool:NO];
+        percentAccount.isDiff = account.isDiff;
+        percentAccount.startDate = account.startDate;
+        percentAccount.endDate = account.endDate;
+        percentAccount.user = account.user;
             [self saveContext];
             return nil;
-        }
+
     }
     [self.managedObjectContext deleteObject:account];
     [self saveContext];
@@ -444,14 +434,8 @@
 - (NSString *)addAccountType: (AccountType *)accountType{
     NSString *result = [self validateAccountType:accountType];
     if(!result) {
-        id selected = [self selectFromTableByName:@"AccounType" name:accountType.name];
-        if (selected ) {
-            [self.managedObjectContext deleteObject:accountType];
-            return @"Account type with this name has already exists.";
-        } else {
-            [self saveContext];
-            return nil;
-        }
+        [self saveContext];
+        return nil;
     }
     [self.managedObjectContext deleteObject:accountType];
     [self saveContext];
@@ -471,15 +455,168 @@
     return result;
 }
 
+- (NSString *)addDepisitPercents{
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+
+    NSEntityDescription* description =
+    [NSEntityDescription entityForName:@"Account"
+                inManagedObjectContext:self.managedObjectContext];
+
+    NSPredicate* predicate =
+    [NSPredicate predicateWithFormat:@"type.accountPlan.isDeposit = YES"];
+
+    [request setPredicate:predicate];
+    [request setEntity:description];
+
+    NSError* requestError = nil;
+    NSArray* resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    if (requestError) {
+        NSLog(@"%@", [requestError localizedDescription]);
+    }
+
+    for (int i = 0; i < [resultArray count]; i++) {
+        if ([[resultArray[i] valueForKey:@"isMain"] isEqual:[NSNumber numberWithBool:NO]]) {
+            Account *mainDeposit;
+            for (Account *tempDep in resultArray) {
+                if ([[resultArray[i] valueForKey:@"agreementNumber"] isEqualToString:tempDep.agreementNumber] && [tempDep.isMain isEqual:[NSNumber numberWithBool:YES]]) {
+                    mainDeposit = tempDep;
+                    break;
+                }
+            }
+            NSInteger percent = [mainDeposit.credit integerValue] * [mainDeposit.type.percent integerValue] / 36500;
+            [resultArray[i] setValue:[NSNumber numberWithInteger:
+                                      [[resultArray[i] valueForKey:@"credit" ] integerValue] + percent]
+                              forKey:@"credit"];
+            [resultArray[i] setValue:[NSNumber numberWithInteger:
+                                      [[resultArray[i] valueForKey:@"credit" ] integerValue]*(-1)]
+                              forKey:@"debet"];
+        }
+    }
+
+    [self saveContext];
+    return nil;
+}
+
+- (NSString *)addCreditPercents{
+    double j = 0;
+    double p = 0;
+    double payment = 0;
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+
+    NSEntityDescription* description =
+    [NSEntityDescription entityForName:@"Account"
+                inManagedObjectContext:self.managedObjectContext];
+
+    NSPredicate* predicate =
+    [NSPredicate predicateWithFormat:@"type.accountPlan.isDeposit = NO"];
+
+    [request setPredicate:predicate];
+    [request setEntity:description];
+
+    NSError* requestError = nil;
+    NSArray* resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    if (requestError) {
+        NSLog(@"%@", [requestError localizedDescription]);
+    }
+
+    for (int i = 0; i < [resultArray count]; i++) {
+        if ([[resultArray[i] valueForKey:@"isMain"] isEqual:[NSNumber numberWithBool:YES]]) {
+
+            if ([[resultArray[i] valueForKey:@"isDiff"] isEqual:[NSNumber numberWithBool:YES]]) {
+
+                p = (-1)*[[resultArray[i] valueForKey:@"credit"] doubleValue] *
+                [[resultArray[i] valueForKeyPath:@"type.percent"] doubleValue] / 1200;
+
+                payment = [[resultArray[i] valueForKey:@"debet"] doubleValue] /
+                [[resultArray[i] valueForKeyPath:@"type.durationMonth"] doubleValue] + p;
+
+                [resultArray[i] setValue:[NSNumber numberWithInteger:
+                                          [[resultArray[i] valueForKey:@"credit" ] doubleValue] + payment]
+                                  forKey:@"credit"];
+                [resultArray[i] setValue:[NSNumber numberWithInteger:
+                                          [[resultArray[i] valueForKey:@"credit" ] doubleValue] +
+                                          [[resultArray[i] valueForKey:@"debet" ] doubleValue]]
+                                  forKey:@"saldo"];
+
+            } else {
+                j = [[resultArray[i] valueForKeyPath:@"type.percent"] doubleValue] / 1200.f;
+                p = pow((1 + j), [[resultArray[i] valueForKeyPath:@"type.durationMonth"] doubleValue]);
+                payment = (j * p * [[resultArray[i] valueForKey:@"debet"] doubleValue]) / (p - 1);
+
+                p = ([[resultArray[i] valueForKey:@"debet" ] doubleValue] - [[resultArray[i] valueForKey:@"saldo" ] doubleValue]) * j;
+
+                [resultArray[i] setValue:[NSNumber numberWithInteger:
+                                          [[resultArray[i] valueForKey:@"credit" ] doubleValue] +
+                                          payment - p]
+                                  forKey:@"credit"];
+                [resultArray[i] setValue:[NSNumber numberWithInteger:
+                                          [[resultArray[i] valueForKey:@"credit" ] doubleValue] +
+                                          [[resultArray[i] valueForKey:@"debet" ] doubleValue]]
+                                  forKey:@"saldo"];
+            }
+
+        }
+    }
+
+    [self saveContext];
+    return nil;
+
+}
+
+- (NSArray *)loadDepositNames{
+    NSFetchRequest *fetch=[[NSFetchRequest alloc] init];
+    NSEntityDescription *testEntity=[NSEntityDescription entityForName:@"AccountType" inManagedObjectContext:self.managedObjectContext];
+    NSPredicate* predicate =
+    [NSPredicate predicateWithFormat:@"accountPlan.isDeposit == YES"];
+
+    [fetch setPredicate:predicate];
+    [fetch setEntity:testEntity];
+
+    NSError *fetchError =  nil;
+    NSArray *fetchedObjs = [self.managedObjectContext executeFetchRequest:fetch error:&fetchError];
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (NSManagedObject *object in fetchedObjs) {
+        [result addObject: [[object valueForKey:@"name"] description]];
+    }
+    if (fetchError!=nil) {
+        NSLog(@" fetchError=%@,details=%@",fetchError,fetchError.userInfo);
+        return nil;
+    }
+    return result;
+}
+
+- (NSArray *)loadCreditNames{
+    NSFetchRequest *fetch=[[NSFetchRequest alloc] init];
+    NSEntityDescription *testEntity=[NSEntityDescription entityForName:@"AccountType" inManagedObjectContext:self.managedObjectContext];
+    NSPredicate* predicate =
+    [NSPredicate predicateWithFormat:@"accountPlan.isDeposit == NO"];
+
+    [fetch setPredicate:predicate];
+    [fetch setEntity:testEntity];
+
+    NSError *fetchError =  nil;
+    NSArray *fetchedObjs = [self.managedObjectContext executeFetchRequest:fetch error:&fetchError];
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (NSManagedObject *object in fetchedObjs) {
+        [result addObject: [[object valueForKey:@"name"] description]];
+    }
+    if (fetchError!=nil) {
+        NSLog(@" fetchError=%@,details=%@",fetchError,fetchError.userInfo);
+        return nil;
+    }
+    return result;
+}
+
 #pragma mark - Validation
 
 - (NSString *)validateAccount: (Account *)account{
 
     if (!account.agreementNumber || !account.credit || !account.debet || !account.saldo ||
-        !account.endDate || !account.startDate || !account.type || !account.user) {
+        !account.startDate || !account.type || !account.user) {
 
+        NSLog(@"%@", account);
         [self.managedObjectContext reset];
-        return @"Fill all fields with * sign.";
+        return @"Fill in all fields.";
     }
 
     return nil;
@@ -491,12 +628,31 @@
         !accountType.accountPlan || !accountType.currency) {
 
         [self.managedObjectContext reset];
-        return @"Fill all fields with * sign.";
+        return @"Fill in all fields.";
     }
 
     if (![self validatePercents:[NSString stringWithFormat:@"%d", [accountType.percent intValue]]]) {
         [self.managedObjectContext reset];
         return @"Enter the valid percents! (1 - 99)";
+    }
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    NSEntityDescription* description =
+    [NSEntityDescription entityForName:@"AccountType"
+                inManagedObjectContext:self.managedObjectContext];
+
+    NSPredicate* predicate =
+    [NSPredicate predicateWithFormat:@"name == %@", accountType.name];
+    [request setPredicate:predicate];
+    [request setEntity:description];
+
+    NSError* requestError = nil;
+    NSArray* resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    if (requestError) {
+        NSLog(@"%@", [requestError localizedDescription]);
+    }
+
+    if ([resultArray count] > 1) {
+        return  @"Account type with this name has alresdy exists.";
     }
 
     return nil;
@@ -507,7 +663,7 @@
     if (!accountPlan.activity || !accountPlan.code || !accountPlan.name) {
 
         [self.managedObjectContext reset];
-        return @"Fill all fields with * sign.";
+        return @"Fill in all fields.";
     }
 
     if (![self validateAccountPlanCode: accountPlan.code]) {
@@ -516,14 +672,12 @@
     }
 
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
-
     NSEntityDescription* description =
     [NSEntityDescription entityForName:@"AccountPlan"
                 inManagedObjectContext:self.managedObjectContext];
 
     NSPredicate* predicate =
     [NSPredicate predicateWithFormat:@"code == %@", accountPlan.code];
-
     [request setPredicate:predicate];
     [request setEntity:description];
 
@@ -533,8 +687,22 @@
         NSLog(@"%@", [requestError localizedDescription]);
     }
 
-    id selected = [self selectFromTableByName:@"AccountType" name:accountPlan.name];
-    if (selected) {
+    if ([resultArray count] > 1) {
+        return  @"Account plan with this code has alresdy exists.";
+    }
+
+    request = [[NSFetchRequest alloc] init];
+    predicate = [NSPredicate predicateWithFormat:@"name == %@", accountPlan.name];
+    [request setPredicate:predicate];
+    [request setEntity:description];
+    requestError = nil;
+    resultArray  = nil;
+    resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    if (requestError) {
+        NSLog(@"%@", [requestError localizedDescription]);
+    }
+
+    if ([resultArray count] > 1) {
         return  @"Account plan with this name has alresdy exists.";
     }
     
@@ -729,8 +897,7 @@
 
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"AdbClientRedactor.sqlite"];
-    //NSURL *storeURL = [[NSURL alloc] init];
-    //NSURL *storeURL = [[NSURL alloc] initWithString:cStoreURL];
+    NSLog(@"%@", storeURL);
 
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
@@ -745,13 +912,15 @@
 }
 
 - (void)dropDataBase {
-    [_managedObjectContext lock];
-    NSArray *stores = [_persistentStoreCoordinator persistentStores];
-    for(NSPersistentStore *store in stores) {
-        [_persistentStoreCoordinator removePersistentStore:store error:nil];
-        [[NSFileManager defaultManager] removeItemAtPath:store.URL.path error:nil];
-    }
-    [_managedObjectContext unlock];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"AdbClientRedactor.sqlite"];
+    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+//    [_managedObjectContext performBlockAndWait:^{
+//        NSArray *stores = [_persistentStoreCoordinator persistentStores];
+//        for(NSPersistentStore *store in stores) {
+//            [_persistentStoreCoordinator removePersistentStore:store error:nil];
+//            [[NSFileManager defaultManager] removeItemAtPath:store.URL.path error:nil];
+//        }
+//    }];
     _managedObjectModel    = nil;
     _managedObjectContext  = nil;
     _persistentStoreCoordinator = nil;

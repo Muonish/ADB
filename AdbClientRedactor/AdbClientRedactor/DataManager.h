@@ -40,7 +40,7 @@
 - (City *)selectCityWithName: (NSString *)name;
 - (FamilyStatus *)selectFamilyStatusWithName: (NSString *)name;
 - (NSArray *)loadNames: (NSString*) entytyName;
-- (NSArray *)loadUsersNameSeriaNumber;
+- (NSArray *)loadUsers;
 
 - (NSString *)addDisabilityWithName: (NSString *)name;
 - (NSString *)addNationalityWithName: (NSString *)name;
@@ -48,6 +48,8 @@
 - (NSString *)addFamilyStatusWithName: (NSString *)name;
 
 //////////////Operations with accounts tables///////////////////
+- (NSArray *)loadDepositNames;
+- (NSArray *)loadCreditNames;
 - (AccountType *)selectAccountTypeWithName: (NSString *)name;
 - (AccountPlan *)selectAccountPlanWithName: (NSString *)name;
 - (Currency *)selectCurrencyWithName: (NSString *)name;
@@ -55,6 +57,8 @@
 - (NSString *)addAccountType: (AccountType *)accountType;
 - (NSString *)addCurrencyWithName: (NSString *)name;
 - (NSString *)addAccountPlan: (AccountPlan *)accountPlan;
+- (NSString *)addDepisitPercents;
+- (NSString *)addCreditPercents;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

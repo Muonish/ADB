@@ -22,6 +22,10 @@
     return _managedObjectContext;
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

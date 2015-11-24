@@ -16,7 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.isView = YES;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.editButtonItem.title = @"Delete";
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (AccountDetailsViewController *) [[self.splitViewController.viewControllers lastObject] topViewController] ;
@@ -28,7 +30,9 @@
 }
 
 - (void)insertNewObject:(id)sender {
-    [self performSegueWithIdentifier:@"showAccountDetail" sender:self];
+    self.isView = NO;
+    [self performSegueWithIdentifier:@"showDepositDetail" sender:self];
+    self.isView = YES;
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -49,14 +53,16 @@
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showAccountDetail"]) {
+    if ([[segue identifier] isEqualToString:@"showDepositDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        Account *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         AccountDetailsViewController *controller = (AccountDetailsViewController *)[segue destinationViewController];
-//
-//        if ([object isKindOfClass:[Account class]]) {
-//                controller.detailItem = object;
-//        }
+        if (self.isView) {
+            controller.detailItem = object;
+        } else {
+            controller.detailItem = nil;
+        }
+        controller.isDeposit = YES;
     }
 }
 
@@ -72,7 +78,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AccountCell" forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -99,14 +105,20 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Account *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",
-                           object.agreementNumber,
-                           object.type.name];
+    if ([object.isMain isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+        cell.textLabel.text = [NSString stringWithFormat:@"№%@ %@ (main)",
+                               object.agreementNumber,
+                               object.type.name];
+    } else {
+        cell.textLabel.text = [NSString stringWithFormat:@"№%@ %@ (percent)",
+                               object.agreementNumber,
+                               object.type.name];
+    }
 
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (sum: %@ saldo: %@)",
-                                 object.user.lastName,
-                                 object.credit,
-                                 object.saldo];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@%@ (credit: %@)",
+                                 object.user.lastName, object.user.passport.seria,
+                                 object.user.passport.number,
+                                 object.credit];
 }
 
 #pragma mark - Fetched results controller
@@ -118,7 +130,6 @@
     }
 
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Account" inManagedObjectContext:self.managedObjectContext];
     NSPredicate* predicate =
     [NSPredicate predicateWithFormat:@"type.accountPlan.isDeposit = YES"];

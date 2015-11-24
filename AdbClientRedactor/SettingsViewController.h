@@ -13,4 +13,7 @@
 
 @property (strong, nonatomic) DataManager *dataManager;
 
+- (IBAction)buttonCloseDayClick:(UIButton *)sender;
+- (IBAction)buttonCloseMonthClick:(UIButton *)sender;
+
 @end

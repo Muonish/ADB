@@ -22,6 +22,10 @@
     return _dataManager;
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -40,9 +44,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)showAlertWithTitle: (NSString *)title andMessage: (NSString*) message{
+- (void)showAlertWithTitle: (NSString *)title message: (NSString*) message andHandler:(void (^)(UIAlertAction *action))handler{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:handler]];
     [self presentViewController:alert animated:YES completion:nil];
 }
 

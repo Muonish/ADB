@@ -18,6 +18,7 @@
 @dynamic debet;
 @dynamic endDate;
 @dynamic isMain;
+@dynamic isDiff;
 @dynamic saldo;
 @dynamic startDate;
 @dynamic card;

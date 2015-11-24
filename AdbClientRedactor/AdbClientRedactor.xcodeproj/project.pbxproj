@@ -10,6 +10,9 @@
 		3012EADD1BFE848F00BDB060 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3012EADC1BFE848F00BDB060 /* Assets.xcassets */; };
 		3012EAE31BFE8B1100BDB060 /* DepositViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3012EAE21BFE8B1100BDB060 /* DepositViewController.m */; };
 		3012EAE61BFE8BF000BDB060 /* AccountDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3012EAE51BFE8BF000BDB060 /* AccountDetailsViewController.m */; };
+		305BB9651C0470B4004D111D /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305BB9641C0470B4004D111D /* CreditViewController.m */; };
+		305BB9681C048C53004D111D /* PaymentScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305BB9671C048C53004D111D /* PaymentScheduleViewController.m */; };
+		305BB96B1C0492D2004D111D /* MultiColumnTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 305BB96A1C0492D2004D111D /* MultiColumnTableViewCell.m */; };
 		305CE00A1C00EBB4002F875D /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFE31C00EBB4002F875D /* User+CoreDataProperties.m */; };
 		305CE00B1C00EBB4002F875D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFE51C00EBB4002F875D /* User.m */; };
 		305CE00C1C00EBB4002F875D /* Passport+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 305CDFE71C00EBB4002F875D /* Passport+CoreDataProperties.m */; };
@@ -53,6 +56,12 @@
 		3012EAE21BFE8B1100BDB060 /* DepositViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepositViewController.m; path = ../DepositViewController.m; sourceTree = "<group>"; };
 		3012EAE41BFE8BF000BDB060 /* AccountDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountDetailsViewController.h; path = ../AccountDetailsViewController.h; sourceTree = "<group>"; };
 		3012EAE51BFE8BF000BDB060 /* AccountDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountDetailsViewController.m; path = ../AccountDetailsViewController.m; sourceTree = "<group>"; };
+		305BB9631C0470B4004D111D /* CreditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditViewController.h; sourceTree = "<group>"; };
+		305BB9641C0470B4004D111D /* CreditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditViewController.m; sourceTree = "<group>"; };
+		305BB9661C048C53004D111D /* PaymentScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentScheduleViewController.h; sourceTree = "<group>"; };
+		305BB9671C048C53004D111D /* PaymentScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentScheduleViewController.m; sourceTree = "<group>"; };
+		305BB9691C0492D2004D111D /* MultiColumnTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiColumnTableViewCell.h; sourceTree = "<group>"; };
+		305BB96A1C0492D2004D111D /* MultiColumnTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiColumnTableViewCell.m; sourceTree = "<group>"; };
 		305CDFE21C00EBB4002F875D /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "User+CoreDataProperties.h"; path = "../User+CoreDataProperties.h"; sourceTree = "<group>"; };
 		305CDFE31C00EBB4002F875D /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+CoreDataProperties.m"; path = "../User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		305CDFE41C00EBB4002F875D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../User.h; sourceTree = "<group>"; };
@@ -170,6 +179,12 @@
 				305CE0401C012E53002F875D /* AddingTypeViewController.m */,
 				305CE0421C012E77002F875D /* AddingPlanViewController.h */,
 				305CE0431C012E77002F875D /* AddingPlanViewController.m */,
+				305BB9631C0470B4004D111D /* CreditViewController.h */,
+				305BB9641C0470B4004D111D /* CreditViewController.m */,
+				305BB9661C048C53004D111D /* PaymentScheduleViewController.h */,
+				305BB9671C048C53004D111D /* PaymentScheduleViewController.m */,
+				305BB9691C0492D2004D111D /* MultiColumnTableViewCell.h */,
+				305BB96A1C0492D2004D111D /* MultiColumnTableViewCell.m */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -363,10 +378,13 @@
 				3012EAE61BFE8BF000BDB060 /* AccountDetailsViewController.m in Sources */,
 				305CE0361C00EDEF002F875D /* Account.m in Sources */,
 				30EBB03D1BB8C88800A4E13E /* DetailViewController.m in Sources */,
+				305BB96B1C0492D2004D111D /* MultiColumnTableViewCell.m in Sources */,
 				305CE0131C00EBB4002F875D /* Nationality.m in Sources */,
 				305CE0331C00EDEF002F875D /* AccountPlan.m in Sources */,
 				305CE00C1C00EBB4002F875D /* Passport+CoreDataProperties.m in Sources */,
 				305CE0321C00EDEF002F875D /* AccountPlan+CoreDataProperties.m in Sources */,
+				305BB9651C0470B4004D111D /* CreditViewController.m in Sources */,
+				305BB9681C048C53004D111D /* PaymentScheduleViewController.m in Sources */,
 				3012EAE31BFE8B1100BDB060 /* DepositViewController.m in Sources */,
 				305CE01D1C00EBB4002F875D /* City.m in Sources */,
 				305CE0351C00EDEF002F875D /* Account+CoreDataProperties.m in Sources */,

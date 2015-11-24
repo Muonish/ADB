@@ -14,6 +14,6 @@
 @property (strong, nonatomic) DataManager *dataManager;
 @property (strong, nonatomic) UIGestureRecognizer *tapper;
 
-- (void)showAlertWithTitle: (NSString *)title andMessage: (NSString*) message;
+- (void)showAlertWithTitle: (NSString *)title message: (NSString*) message andHandler:(void (^)(UIAlertAction *action))handler;
 
 @end

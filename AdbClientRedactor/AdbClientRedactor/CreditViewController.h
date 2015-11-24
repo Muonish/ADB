@@ -1,16 +1,16 @@
 //
-//  DepositViewController.h
+//  CreditViewController.h
 //  AdbClientRedactor
 //
-//  Created by Valeryia Breshko on 11/20/15.
+//  Created by Valeryia Breshko on 11/24/15.
 //  Copyright © 2015 Valeria Breshko. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "TabViewController.h"
-#include "AccountDetailsViewController.h"
+#import "AccountDetailsViewController.h"
 
-@interface DepositViewController : TabViewController <NSFetchedResultsControllerDelegate>
+@interface CreditViewController : TabViewController <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) AccountDetailsViewController *detailViewController;
 

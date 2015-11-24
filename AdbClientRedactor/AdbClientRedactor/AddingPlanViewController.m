@@ -29,7 +29,7 @@
 
     NSString *result = [self.dataManager addAccountPlan:newAccountPlan];
     if(result){
-        [self showAlertWithTitle:@"ERROR" andMessage:result];
+        [self showAlertWithTitle:@"ERROR" message:result andHandler:nil];
     } else {
         [self.navigationController popViewControllerAnimated:YES];
     }

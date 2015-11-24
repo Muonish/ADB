@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *debet;
 @property (nullable, nonatomic, retain) NSDate *endDate;
 @property (nullable, nonatomic, retain) NSNumber *isMain;
+@property (nullable, nonatomic, retain) NSNumber *isDiff;
 @property (nullable, nonatomic, retain) NSNumber *saldo;
 @property (nullable, nonatomic, retain) NSDate *startDate;
 @property (nullable, nonatomic, retain) NSSet<Card *> *card;

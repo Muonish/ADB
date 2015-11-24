@@ -22,6 +22,23 @@
     return _dataManager;
 }
 
+- (IBAction)buttonCloseDayClick:(UIButton *)sender {
+    if(![self.dataManager addDepisitPercents]){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Notification" message:@"Bank day successfully closed."preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+- (IBAction)buttonCloseMonthClick:(UIButton *)sender {
+    if(![self.dataManager addCreditPercents]){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Notification" message:@"Month successfully closed."preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
