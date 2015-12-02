@@ -125,6 +125,11 @@ static NSString *const cEndDate = @"EndDate";
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self configureView];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -155,7 +160,6 @@ static NSString *const cEndDate = @"EndDate";
     }
     [self.accountType reloadAllComponents];
     [self.client reloadAllComponents];
-
 }
 
 #pragma mark - Segues
@@ -214,7 +218,7 @@ static NSString *const cEndDate = @"EndDate";
         if (self.sAccountType) {
             AccountType *accountType = [self.dataManager selectAccountTypeWithName:self.sAccountType];
             int r = arc4random() % 1000000000;
-            self.argeementNumber.text = [NSString stringWithFormat:@"%@%9d",accountType.accountPlan.code, r];
+            self.argeementNumber.text = [NSString stringWithFormat:@"%@%09d",accountType.accountPlan.code, r];
             self.currency.text = accountType.currency.name;
             self.duration.text = [NSString stringWithFormat:@"%d", [accountType.durationMonth intValue]];
             self.percent.text = [NSString stringWithFormat:@"%d", [accountType.percent intValue]];
@@ -238,14 +242,14 @@ static NSString *const cEndDate = @"EndDate";
         NSString *message;
         if (self.isDeposit) {
             message = [NSString stringWithFormat:
-                       @"- %d %@ received in cashbox №1010000000001\n- %d %@ transferred to the account number №%@\n- %d %@ received to Fund Development Bank №7327000000001",
+                       @"- %d %@ received in cashbox №1010000000001\n\n- %d %@ transferred to the account number №%@\n\n- %d %@ received to Fund Development Bank №7327000000001",
                        [newAccount.credit intValue], newAccount.type.currency.name,
                        [newAccount.credit intValue], newAccount.type.currency.name,
                        newAccount.agreementNumber,
                        [newAccount.credit intValue] , newAccount.type.currency.name];
         } else {
             message = [NSString stringWithFormat:
-                       @"- %d %@ get from Fund Development Bank №7327000000001\n- %d %@ transferred to the account number №%@\n- %d %@ received to cashbox №1010000000001",
+                       @"- %d %@ get from Fund Development Bank №7327000000001\n\n- %d %@ transferred to the account number №%@\n\n- %d %@ received to cashbox №1010000000001",
                        [newAccount.debet intValue], newAccount.type.currency.name,
                        [newAccount.debet intValue], newAccount.type.currency.name,
                        newAccount.agreementNumber,

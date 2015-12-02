@@ -50,6 +50,7 @@
 //////////////Operations with accounts tables///////////////////
 - (NSArray *)loadDepositNames;
 - (NSArray *)loadCreditNames;
+- (NSArray *)loadCredits;
 - (AccountType *)selectAccountTypeWithName: (NSString *)name;
 - (AccountPlan *)selectAccountPlanWithName: (NSString *)name;
 - (Currency *)selectCurrencyWithName: (NSString *)name;
@@ -59,6 +60,11 @@
 - (NSString *)addAccountPlan: (AccountPlan *)accountPlan;
 - (NSString *)addDepisitPercents;
 - (NSString *)addCreditPercents;
+
+///////////////////Operations with cards////////////////////////
+- (NSArray *)loadCards;
+- (NSString *)addCard:(Card *)card;
+- (NSString *)checkCardNumber:(NSString *)number andPIN:(NSString *)pin;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

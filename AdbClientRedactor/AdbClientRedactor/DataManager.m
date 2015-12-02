@@ -607,7 +607,133 @@
     return result;
 }
 
+- (NSArray *)loadCredits{
+    NSFetchRequest *fetch=[[NSFetchRequest alloc] init];
+    NSEntityDescription *testEntity=[NSEntityDescription entityForName:@"Account" inManagedObjectContext:self.managedObjectContext];
+    NSPredicate* predicate =
+    [NSPredicate predicateWithFormat:@"type.accountPlan.isDeposit == NO && isMain == YES"];
+
+    [fetch setPredicate:predicate];
+    [fetch setEntity:testEntity];
+
+    NSError *fetchError =  nil;
+    NSArray *fetchedObjs = [self.managedObjectContext executeFetchRequest:fetch error:&fetchError];
+
+    return fetchedObjs;
+}
+
+#pragma mark - Cards
+
+- (NSArray *)loadCards{
+    NSFetchRequest *fetch=[[NSFetchRequest alloc] init];
+    NSEntityDescription *testEntity=[NSEntityDescription entityForName:@"Card" inManagedObjectContext:self.managedObjectContext];
+    [fetch setEntity:testEntity];
+
+    NSError *fetchError =  nil;
+    NSArray *fetchedObjs = [self.managedObjectContext executeFetchRequest:fetch error:&fetchError];
+
+    return fetchedObjs;
+}
+
+- (NSString *)addCard:(Card *)card{
+    NSString *result = [self validateCard:card];
+    if(!result) {
+        card.numberOfAttempts = [NSNumber numberWithInt:3];
+        [self saveContext];
+        return nil;
+    }
+    [self.managedObjectContext deleteObject:card];
+    [self saveContext];
+
+    return result;
+}
+
+- (NSString *)checkCardNumber:(NSString *)number andPIN:(NSString *)pin{
+    NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+    NSEntityDescription *testEntity = [NSEntityDescription entityForName:@"Card" inManagedObjectContext:self.managedObjectContext];
+
+    NSPredicate* predicate =
+    [NSPredicate predicateWithFormat:@"number == %@", number];
+    [fetch setPredicate:predicate];
+    [fetch setEntity:testEntity];
+
+    NSError *fetchError =  nil;
+    NSArray *fetchedObjs = [self.managedObjectContext executeFetchRequest:fetch error:&fetchError];
+    if (fetchError) {
+        NSLog(@"%@", [fetchError localizedDescription]);
+    }
+
+    if ([fetchedObjs count] > 0) {
+        int currentAttempts = [[[fetchedObjs firstObject] valueForKey:@"numberOfAttempts"] intValue];
+        if (currentAttempts < 4 && currentAttempts > 0 ) {
+
+            if ([[[fetchedObjs firstObject] valueForKey:@"password"] isEqualToString:pin]) {
+                [[fetchedObjs firstObject] setValue: [NSNumber numberWithInt:3]
+                                              forKey: @"numberOfAttempts"];
+                [self saveContext];
+                return nil;
+            } else {
+                int newAttempts = [[[fetchedObjs firstObject]
+                                    valueForKey:@"numberOfAttempts"] intValue] - 1;
+                [[fetchedObjs firstObject] setValue:[NSNumber numberWithInt: newAttempts]
+                                              forKey:@"numberOfAttempts"];
+                [self saveContext];
+                return [NSString stringWithFormat:@"Incorrect PIN, try again! %d attemps left. And then your card will be blocked!",
+                        [[[fetchedObjs firstObject] valueForKey:@"numberOfAttempts"] intValue] ];
+            }
+
+        } else {
+            return @"Sorry, this card is blocked :(";
+        }
+    } else {
+        return  @"ERROR!";
+
+    }
+}
+
 #pragma mark - Validation
+
+- (NSString *)validateCard: (Card *)card{
+
+    if (!card.number || !card.password || !card.account) {
+        NSLog(@"%@", card);
+        [self.managedObjectContext reset];
+        return @"Fill in all fields.";
+    }
+
+    if (![self validatePassword:card.password]) {
+        [self.managedObjectContext reset];
+        return @"Enter the valid PIN with 4 digits! (0000)";
+    }
+
+    if (![self validateCardNumber:card.number]) {
+        [self.managedObjectContext reset];
+        return @"Enter the valid card number with 16 digits! (0000 1111 2222 3333)";
+    }
+
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    NSEntityDescription* description =
+    [NSEntityDescription entityForName:@"Card"
+                inManagedObjectContext:self.managedObjectContext];
+
+    NSPredicate* predicate =
+    [NSPredicate predicateWithFormat:@"number == %@", card.number];
+    [request setPredicate:predicate];
+    [request setEntity:description];
+
+    NSError* requestError = nil;
+    NSArray* resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    if (requestError) {
+        NSLog(@"%@", [requestError localizedDescription]);
+    }
+
+    if ([resultArray count] > 1) {
+        return  @"Card with this number has already exists.";
+    }
+
+    return nil;
+}
+
 
 - (NSString *)validateAccount: (Account *)account{
 
@@ -652,7 +778,7 @@
     }
 
     if ([resultArray count] > 1) {
-        return  @"Account type with this name has alresdy exists.";
+        return  @"Account type with this name has already exists.";
     }
 
     return nil;
@@ -688,7 +814,7 @@
     }
 
     if ([resultArray count] > 1) {
-        return  @"Account plan with this code has alresdy exists.";
+        return  @"Account plan with this code has already exists.";
     }
 
     request = [[NSFetchRequest alloc] init];
@@ -737,6 +863,40 @@
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern: pattern options:0 error:&error];
     NSArray* matches = [regex matchesInString:searchedString options:0 range: searchedRange];
 
+
+    if (matches.count != 1) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)validatePassword:(NSString*)value
+{
+    NSString *searchedString = value;
+    NSRange   searchedRange = NSMakeRange(0, [searchedString length]);
+    NSString *pattern = @"^[0-9]{4}$";
+    NSError  *error = nil;
+
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern: pattern options:0 error:&error];
+    NSArray* matches = [regex matchesInString:searchedString options:0 range: searchedRange];
+
+    if (matches.count != 1) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)validateCardNumber:(NSString*)value
+{
+    NSString *searchedString = value;
+    NSRange   searchedRange = NSMakeRange(0, [searchedString length]);
+    NSString *pattern = @"^[0-9]{16}$";
+    NSError  *error = nil;
+
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern: pattern options:0 error:&error];
+    NSArray* matches = [regex matchesInString:searchedString options:0 range: searchedRange];
 
     if (matches.count != 1) {
         return NO;

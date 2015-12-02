@@ -42,6 +42,10 @@
 		305EEE701BCAB16C00D0BC0E /* AdbClientRedactor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE6E1BCAB16B00D0BC0E /* AdbClientRedactor.xcdatamodeld */; };
 		305EEE971BCAF17700D0BC0E /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEE961BCAF17700D0BC0E /* DataManager.m */; };
 		305EEEC11BCBD41600D0BC0E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EEEC01BCBD41600D0BC0E /* SettingsViewController.m */; };
+		30CCBDDC1C05C4C5007EAFC8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CCBDDB1C05C4C5007EAFC8 /* LoginViewController.m */; };
+		30CCBDE01C05C553007EAFC8 /* BindCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CCBDDF1C05C553007EAFC8 /* BindCardViewController.m */; };
+		30CCBDE31C05D0BA007EAFC8 /* OperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CCBDE21C05D0BA007EAFC8 /* OperationViewController.m */; };
+		30CCBDE61C05D69A007EAFC8 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CCBDE51C05D69A007EAFC8 /* MenuViewController.m */; };
 		30EBB0311BB8C88800A4E13E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EBB0301BB8C88800A4E13E /* main.m */; };
 		30EBB0341BB8C88800A4E13E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EBB0331BB8C88800A4E13E /* AppDelegate.m */; };
 		30EBB03A1BB8C88800A4E13E /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EBB0391BB8C88800A4E13E /* MasterViewController.m */; };
@@ -119,6 +123,14 @@
 		305EEE961BCAF17700D0BC0E /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		305EEEBF1BCBD41600D0BC0E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ../SettingsViewController.h; sourceTree = "<group>"; };
 		305EEEC01BCBD41600D0BC0E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = ../SettingsViewController.m; sourceTree = "<group>"; };
+		30CCBDDA1C05C4C5007EAFC8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		30CCBDDB1C05C4C5007EAFC8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		30CCBDDE1C05C553007EAFC8 /* BindCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindCardViewController.h; sourceTree = "<group>"; };
+		30CCBDDF1C05C553007EAFC8 /* BindCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindCardViewController.m; sourceTree = "<group>"; };
+		30CCBDE11C05D0BA007EAFC8 /* OperationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationViewController.h; sourceTree = "<group>"; };
+		30CCBDE21C05D0BA007EAFC8 /* OperationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationViewController.m; sourceTree = "<group>"; };
+		30CCBDE41C05D69A007EAFC8 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		30CCBDE51C05D69A007EAFC8 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		30EBB02C1BB8C88800A4E13E /* AdbClientRedactor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdbClientRedactor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30EBB0301BB8C88800A4E13E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		30EBB0321BB8C88800A4E13E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -153,6 +165,7 @@
 				3012EB601C00D64F00BDB060 /* User */,
 				3012EB611C00D66200BDB060 /* Accounts */,
 				3012EB621C00D68800BDB060 /* More */,
+				30CCBDDD1C05C4CF007EAFC8 /* ATM */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -256,6 +269,21 @@
 				305CE0091C00EBB4002F875D /* City.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		30CCBDDD1C05C4CF007EAFC8 /* ATM */ = {
+			isa = PBXGroup;
+			children = (
+				30CCBDDE1C05C553007EAFC8 /* BindCardViewController.h */,
+				30CCBDDF1C05C553007EAFC8 /* BindCardViewController.m */,
+				30CCBDDA1C05C4C5007EAFC8 /* LoginViewController.h */,
+				30CCBDDB1C05C4C5007EAFC8 /* LoginViewController.m */,
+				30CCBDE41C05D69A007EAFC8 /* MenuViewController.h */,
+				30CCBDE51C05D69A007EAFC8 /* MenuViewController.m */,
+				30CCBDE11C05D0BA007EAFC8 /* OperationViewController.h */,
+				30CCBDE21C05D0BA007EAFC8 /* OperationViewController.m */,
+			);
+			name = ATM;
 			sourceTree = "<group>";
 		};
 		30EBB0231BB8C88800A4E13E = {
@@ -373,12 +401,14 @@
 			files = (
 				305CE00A1C00EBB4002F875D /* User+CoreDataProperties.m in Sources */,
 				305CE0191C00EBB4002F875D /* FamilyStatus.m in Sources */,
+				30CCBDDC1C05C4C5007EAFC8 /* LoginViewController.m in Sources */,
 				305CE0471C01CFB6002F875D /* TabViewController.m in Sources */,
 				305CE0371C00EDEF002F875D /* AccountType+CoreDataProperties.m in Sources */,
 				3012EAE61BFE8BF000BDB060 /* AccountDetailsViewController.m in Sources */,
 				305CE0361C00EDEF002F875D /* Account.m in Sources */,
 				30EBB03D1BB8C88800A4E13E /* DetailViewController.m in Sources */,
 				305BB96B1C0492D2004D111D /* MultiColumnTableViewCell.m in Sources */,
+				30CCBDE01C05C553007EAFC8 /* BindCardViewController.m in Sources */,
 				305CE0131C00EBB4002F875D /* Nationality.m in Sources */,
 				305CE0331C00EDEF002F875D /* AccountPlan.m in Sources */,
 				305CE00C1C00EBB4002F875D /* Passport+CoreDataProperties.m in Sources */,
@@ -394,7 +424,9 @@
 				305CE00E1C00EBB4002F875D /* Card+CoreDataProperties.m in Sources */,
 				305EEE701BCAB16C00D0BC0E /* AdbClientRedactor.xcdatamodeld in Sources */,
 				305EEE971BCAF17700D0BC0E /* DataManager.m in Sources */,
+				30CCBDE61C05D69A007EAFC8 /* MenuViewController.m in Sources */,
 				305CE0151C00EBB4002F875D /* Disability.m in Sources */,
+				30CCBDE31C05D0BA007EAFC8 /* OperationViewController.m in Sources */,
 				305CE01C1C00EBB4002F875D /* City+CoreDataProperties.m in Sources */,
 				305CE00D1C00EBB4002F875D /* Passport.m in Sources */,
 				305CE03E1C00EE10002F875D /* Currency.m in Sources */,

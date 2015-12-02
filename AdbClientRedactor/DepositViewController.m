@@ -24,6 +24,8 @@
     self.detailViewController = (AccountDetailsViewController *) [[self.splitViewController.viewControllers lastObject] topViewController] ;
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
